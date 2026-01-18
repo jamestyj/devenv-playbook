@@ -1,10 +1,6 @@
-name: Lint
+name: Ansible Lint
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push, pull_request]
 
 jobs:
   ansible-lint:
@@ -14,4 +10,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run ansible-lint
-        uses: ansible/ansible-lint-action@v6.22.1
+        uses: ansible/ansible-lint-action@v1.1.0
+        with:
+          target: "./"
+          required_collections: 'community.general'
