@@ -1,4 +1,4 @@
-- name: zsh
+- name: Zsh
   hosts: localhost
   vars:
     oh_my_zsh_plugins:
@@ -12,7 +12,7 @@
         }
       - { name: "fzf-tab", repo: "https://github.com/Aloxaf/fzf-tab" }
   tasks:
-    - name: "zsh: Install zsh"
+    - name: "Zsh: Install zsh"
       ansible.builtin.package:
         name:
           - zsh
@@ -20,33 +20,35 @@
         state: present
       become: true
 
-    - name: "zsh: Set default shell"
+    - name: "Zsh: Set default shell"
       ansible.builtin.user:
         name: "{{ ansible_env.USER }}"
         shell: /bin/zsh
       become: true
 
-    - name: "zsh: Install Oh-My-Zsh"
+    - name: "Zsh: Install Oh-My-Zsh"
       ansible.builtin.git:
         repo: https://github.com/ohmyzsh/ohmyzsh
         dest: "~/.oh-my-zsh"
         update: no # Only clone if the directory doesn't exist
 
-    - name: "zsh: Install Oh-My-Zsh plugins"
+    - name: "Zsh: Install Oh-My-Zsh plugins"
       ansible.builtin.git:
         repo: "{{ item.repo }}"
         dest: "~/.oh-my-zsh/custom/plugins/{{ item.name }}"
         update: no
       loop: "{{ oh_my_zsh_plugins }}"
 
-    - name: "zsh: Create .zshrc from Oh-My-Zsh"
+    - name: "Zsh: Create .zshrc from Oh-My-Zsh"
       ansible.builtin.copy:
         src: "~/.oh-my-zsh/templates/zshrc.zsh-template"
         dest: "~/.zshrc"
         remote_src: yes
         force: no # Won't overwrite if file already exists
+        mode: "0644"
 
-    - name: "zsh: Update plugins config"
+
+    - name: "Zsh: Update plugins config"
       ansible.builtin.lineinfile:
         path: ~/.zshrc
         regexp: '^plugins=\(git'

@@ -62,3 +62,20 @@ Before running the playbook, ensure you have:
 - [ ] Detailed Neovim configuration (LSP, plugins)
   - [Dotfyle - Trending Colorschemes](https://dotfyle.com/neovim/colorscheme/trending)
   - [jdhao/nvim-config](https://github.com/jdhao/nvim-config)
+
+## 🛠️ Development
+
+### Git Hooks
+
+This project uses a native Git pre-commit hook to run `ansible-lint` before every commit.
+
+1. The hook is automatically installed when you run `./setup.sh`.
+2. To manually install or refresh the hook, run:
+   ```bash
+   ln -sf ../../scripts/git-hooks/pre-commit .git/hooks/pre-commit
+   chmod +x scripts/git-hooks/pre-commit
+   ```
+3. To run the linter manually:
+   ```bash
+   ansible-lint .
+   ```

@@ -14,43 +14,36 @@
   vars:
     homebrew_prefix: "/home/linuxbrew/.linuxbrew"
   tasks:
-    - name: "Homebrew: Check if Homebrew is installed"
-      ansible.builtin.stat:
-        path: "{{ homebrew_prefix }}/bin/brew"
-      register: brew_stat
+    - name: "Homebrew: Install dependencies"
+      ansible.builtin.package:
+        name:
+          - build-essential
+          - procps
+          - curl
+          - file
+          - git
+          - tar
+        state: present
+      become: true
 
-    - block:
-        - name: "Homebrew: Install dependencies"
-          ansible.builtin.package:
-            name:
-              - build-essential
-              - procps
-              - curl
-              - file
-              - git
-              - tar
-            state: present
-          become: true
+    - name: "Homebrew: Create prefix directory"
+      ansible.builtin.file:
+        path: "{{ homebrew_prefix }}"
+        state: directory
+        owner: "{{ ansible_env.USER }}"
+        group: "{{ ansible_env.USER }}"
+        mode: "0755"
+      become: true
 
-        - name: "Homebrew: Create prefix directory"
-          ansible.builtin.file:
-            path: "{{ homebrew_prefix }}"
-            state: directory
-            owner: "{{ ansible_env.USER }}"
-            group: "{{ ansible_env.USER }}"
-            mode: "0755"
-          become: true
-
-        - name: "Homebrew: Install Homebrew"
-          ansible.builtin.shell: |
-            curl -fsSL https://github.com/Homebrew/brew/tarball/main | tar xz --strip 1 -C {{ homebrew_prefix }}
-            eval "$({{ homebrew_prefix }}/bin/brew shellenv)"
-            brew update --force --quiet
-            chmod -R go-w {{ homebrew_prefix }}/share/zsh
-
-      when: not brew_stat.stat.exists
-      environment:
-        PATH: "{{ homebrew_prefix }}/bin:{{ ansible_env.PATH }}"
+    - name: "Homebrew: Install Homebrew"
+      ansible.builtin.shell: |
+        set -o pipefail
+        curl -fsSL https://github.com/Homebrew/brew/tarball/main | tar xz --strip 1 -C {{ homebrew_prefix }}
+        eval "$({{ homebrew_prefix }}/bin/brew shellenv)"
+        brew update --force --quiet
+        chmod -R go-w {{ homebrew_prefix }}/share/zsh
+      args:
+        creates: "{{ homebrew_prefix }}/bin/brew"
 
     - name: "Homebrew: Add path to shell profiles"
       ansible.builtin.blockinfile:

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Run ansible-lint on all files in the repository
+if ! command -v ansible-lint &> /dev/null; then
+    echo "Error: ansible-lint not found. Please install it with 'brew install ansible-lint'."
+    exit 1
+fi
+
+echo "Running ansible-lint..."
+ansible-lint .
+
+if [ $? -ne 0 ]; then
+    echo "Ansible linting failed. Commit aborted."
+    exit 1
+fi
