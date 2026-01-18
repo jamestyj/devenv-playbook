@@ -1,0 +1,30 @@
+---
+- name: Ensure dependencies are installed
+  become: yes
+  apt:
+    name:
+      - curl
+      - unzip
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Check if Bun is installed
+  shell: command -v bun
+  register: bun_check
+  ignore_errors: yes
+  changed_when: false
+
+- name: Download and install Bun
+  shell: curl -fsSL https://bun.sh/install | bash
+  when: bun_check.rc != 0
+  args:
+    executable: /bin/bash
+
+- name: Ensure Bun is in .bashrc
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: 'export BUN_INSTALL="$HOME/.bun" && export PATH="$BUN_INSTALL/bin:$PATH"'
+    state: present
+    create: yes
+  when: bun_check.rc != 0
