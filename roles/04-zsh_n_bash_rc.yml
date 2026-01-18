@@ -1,0 +1,27 @@
+- name: Zshrc and Bashrc
+  hosts: localhost
+  gather_facts: no
+  vars:
+    homebrew_prefix: "/home/linuxbrew/.linuxbrew"
+  tasks:
+    - name: "Configure shell profiles"
+      ansible.builtin.blockinfile:
+        path: "~/{{ item }}"
+        block: |
+          # Homebrew shell variables
+          eval "$({{ homebrew_prefix }}/bin/brew shellenv)"
+
+          # Preview file content using 'bat'
+          FZF_CTRL_T_OPTS="
+            --preview 'bat --style=numbers --color=always --line-range :500 {}'
+            --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+          # Preview directory tree for ALT-C
+          FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+          # SSH agent
+          eval "$(ssh-agent -s)"
+          ssh-add
+      loop:
+        - .bashrc
+        - .zshrc
