@@ -1,5 +1,7 @@
 #!/bin/sh
 
+PATH=/home/linuxbrew/.linuxbrew/bin/:$PATH
+
 # Colors
 RED=$(printf '\033[0;31m')
 GREEN=$(printf '\033[0;32m')

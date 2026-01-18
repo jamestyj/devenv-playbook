@@ -1,0 +1,15 @@
+# Need this to avoid locale errors like the following:
+#
+#    ERROR: Ansible could not initialize the preferred locale: unsupported locale setting
+#
+- name: Locale
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: "Locale: Set locale"
+      ansible.builtin.shell: |
+        locale-gen en_US.UTF-8
+        update-locale LANG=en_US.UTF-8
+      become: true
+      args:
+        creates: "/etc/locale.conf"

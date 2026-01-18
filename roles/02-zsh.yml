@@ -47,7 +47,6 @@
         force: no # Won't overwrite if file already exists
         mode: "0644"
 
-
     - name: "Zsh: Update plugins config"
       ansible.builtin.lineinfile:
         path: ~/.zshrc

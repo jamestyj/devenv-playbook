@@ -1,3 +1,4 @@
 ---
-- ansible.builtin.import_playbook: 01-zsh.yml
-- ansible.builtin.import_playbook: 02-homebrew.yml
+- ansible.builtin.import_playbook: 01-locale.yml
+- ansible.builtin.import_playbook: 02-zsh.yml
+- ansible.builtin.import_playbook: 03-homebrew.yml
