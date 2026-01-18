@@ -1,4 +1,4 @@
-# devenv-playbook
+# devenv-playbook [![Lint](https://github.com/jamestyj/devenv-playbook/actions/workflows/lint.yml/badge.svg)](https://github.com/jamestyj/devenv-playbook/actions/workflows/lint.yml)
 
 A collection of Ansible playbooks to automate the setup of a productive development environment on Windows Subsystem for Linux (WSL).
 
