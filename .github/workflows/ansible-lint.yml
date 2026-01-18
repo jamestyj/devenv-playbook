@@ -1,16 +1,16 @@
-name: Ansible Lint
+name: ansible-lint
 
 on: [push, pull_request]
 
 jobs:
-  ansible-lint:
+  build:
+    name: Ansible Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Run ansible-lint
-        uses: ansible/ansible-lint-action@v1.1.0
+        uses: ansible/ansible-lint@v26.1.1
         with:
-          target: "./"
-          required_collections: 'community.general'
+          requirements_file: "requirements.yml"
