@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# Colors
+RED=$(printf '\033[0;31m')
+GREEN=$(printf '\033[0;32m')
+BLUE=$(printf '\033[1;34m')
+NC=$(printf '\033[0m') # No Color
+
+start_total=$(date +%s)
+
+print_header() {
+  echo "${BLUE}[pre-commit check $1] $2"
+}
+
+check_step() {
+  step=$1
+  command=$2
+
+  print_header "$step" "Running '$command'...${NC}"
+  step_start=$(date +%s)
+
+  eval "$command"
+  status=$?
+
+  step_duration=$(( $(date +%s) - step_start ))
+
+  if [ $status -ne 0 ]; then
+    echo "${RED}✘ '$command' failed after ${step_duration}s${NC}"
+    exit 1
+  else
+    echo "${GREEN}✔ '$command' passed in ${step_duration}s${NC}"
+  fi
+  echo ""
+}
+
+check_step "1/2" "ansible-playbook --syntax-check roles/*"
+check_step "2/2" "ansible-lint"
+
+total_duration=$(( $(date +%s) - start_total ))
+echo "${GREEN}All checks passed in ${total_duration}s! 🚀${NC}"
+exit 0
