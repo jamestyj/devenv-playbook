@@ -1,0 +1,6 @@
+---
+- name: Setup zsh
+  ansible.builtin.import_playbook: roles/zsh.yml
+
+- name: Setup Homebrew & packages
+  ansible.builtin.import_playbook: roles/homebrew.yml

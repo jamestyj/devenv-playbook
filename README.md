@@ -1,5 +1,6 @@
 # devenv-playbook
 
+
 ## Install Ubuntu in WSL
 
 Install the default Ubuntu disto by running the following commands in Windows Terminal:
@@ -17,7 +18,7 @@ wsl -d Ubuntu
 4. Run the playbook:
 
 ```Bash
-ansible-playbook roles/homebrew.yml -K
+ansible-playbook main.yml -K
 ```
 
 TODO:

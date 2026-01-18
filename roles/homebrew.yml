@@ -20,7 +20,7 @@
 
     - block:
         - name: "Homebrew: Install dependencies"
-          ansible.builtin.apt:
+          ansible.builtin.package:
             name:
               - build-essential
               - procps
@@ -28,6 +28,7 @@
               - file
               - git
               - tar
+            state: present
           become: true
 
         - name: "Homebrew: Create prefix directory"
@@ -67,5 +68,12 @@
 
     - name: "Homebrew: Install packages"
       community.general.homebrew:
-        name: oven-sh/bun/bun
+        name:
+          - oven-sh/bun/bun
+          - btop
+          - ripgrep
+          - fd
+          - bat
+          - eza
+          - sd
         state: present
