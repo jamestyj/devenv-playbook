@@ -1,0 +1,71 @@
+# The official supported install script is:
+#
+#   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#
+# But it doesn't work with headless installs like Ansible because it:
+#  1. Prompts for sudo password
+#  2. Does not permit running as root
+#
+# Thus we need to install it manually via the steps at https://docs.brew.sh/Installation.
+
+- name: Homebrew
+  hosts: localhost
+  vars:
+    homebrew_prefix: "/home/linuxbrew/.linuxbrew"
+  tasks:
+    - name: "Homebrew: Check if Homebrew is installed"
+      ansible.builtin.stat:
+        path: "{{ homebrew_prefix }}/bin/brew"
+      register: brew_stat
+
+    - block:
+        - name: "Homebrew: Install dependencies"
+          ansible.builtin.apt:
+            name:
+              - build-essential
+              - procps
+              - curl
+              - file
+              - git
+              - tar
+          become: true
+
+        - name: "Homebrew: Create prefix directory"
+          ansible.builtin.file:
+            path: "{{ homebrew_prefix }}"
+            state: directory
+            owner: "{{ ansible_env.USER }}"
+            group: "{{ ansible_env.USER }}"
+            mode: "0755"
+          become: true
+
+        - name: "Homebrew: Install Homebrew"
+          ansible.builtin.shell: |
+            curl -fsSL https://github.com/Homebrew/brew/tarball/main | tar xz --strip 1 -C {{ homebrew_prefix }}
+            eval "$({{ homebrew_prefix }}/bin/brew shellenv)"
+            brew update --force --quiet
+            chmod -R go-w {{ homebrew_prefix }}/share/zsh
+
+      when: not brew_stat.stat.exists
+      environment:
+        PATH: "{{ homebrew_prefix }}/bin:{{ ansible_env.PATH }}"
+
+    - name: "Homebrew: Add path to shell profiles"
+      ansible.builtin.blockinfile:
+        path: "~/{{ item }}"
+        block: |
+          # Homebrew
+          eval "$({{ homebrew_prefix }}/bin/brew shellenv)"
+      loop:
+        - .bashrc
+        - .zshrc
+
+    - name: "Homebrew: Add taps"
+      community.general.homebrew_tap:
+        name: oven-sh/bun
+        state: present
+
+    - name: "Homebrew: Install packages"
+      community.general.homebrew:
+        name: oven-sh/bun/bun
+        state: present
