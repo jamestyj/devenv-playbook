@@ -10,6 +10,7 @@
 
 - name: Homebrew
   hosts: localhost
+  gather_facts: no
   vars:
     homebrew_prefix: "/home/linuxbrew/.linuxbrew"
   tasks:
@@ -55,8 +56,16 @@
       ansible.builtin.blockinfile:
         path: "~/{{ item }}"
         block: |
-          # Homebrew
+          # Homebrew shell variables
           eval "$({{ homebrew_prefix }}/bin/brew shellenv)"
+
+          # Preview file content using 'bat'
+          FZF_CTRL_T_OPTS="
+            --preview 'bat --style=numbers --color=always --line-range :500 {}'
+            --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+          # Preview directory tree for ALT-C
+          FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
       loop:
         - .bashrc
         - .zshrc
@@ -76,4 +85,12 @@
           - bat
           - eza
           - sd
+          - neovim
+          - fzf
         state: present
+
+    - name: "Homebrew: Configure packages"
+      ansible.builtin.shell: |
+        $(brew --prefix)/opt/fzf/install --all
+      args:
+        creates: ~/.fzf.zsh
