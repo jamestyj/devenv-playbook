@@ -1,0 +1,19 @@
+---
+- name: "Utils: Create git config"
+  ansible.builtin.copy:
+    dest: "~/.gitconfig"
+    mode: "0644"
+    content: |
+      [user]
+        email = your.email@example.com
+        name = Your Name
+      [alias]
+        co = checkout
+        br = branch
+        ci = commit
+        st = status
+        cp = cherry-pick
+      [push]
+        autoSetupRemote = true
+      [core]
+        editor = nvim

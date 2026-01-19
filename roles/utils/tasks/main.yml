@@ -4,3 +4,6 @@
 
 - name: "Utils: Configure tmux"
   ansible.builtin.include_tasks: tmux.yml
+
+- name: "Utils: Configure git"
+  ansible.builtin.include_tasks: git.yml
