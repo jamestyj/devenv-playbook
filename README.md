@@ -57,8 +57,10 @@ chmod 644 ~/.ssh/id_ed25519.pub
 
 ### 3. Checkout repo and run setup script
 
+Execute the following, and enter your SSH passpharse and root password when prompted:
+
 ```Bash
-git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-playbook
+cd ~ && git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-playbook
 ./setup.sh
 ```
 
