@@ -1,0 +1,6 @@
+---
+- name: "Utils: Configure Homebrew"
+  ansible.builtin.include_tasks: homebrew.yml
+
+- name: "Utils: Configure tmux"
+  ansible.builtin.include_tasks: tmux.yml

@@ -3,6 +3,5 @@
   connection: local
   roles:
     - linux
-    - homebrew
+    - utils
     - zsh
-    - tmux

@@ -11,4 +11,4 @@
       fi
 
 - name: "tmux: Setup catppuccin"
-  ansible.builtin.include_tasks: catppuccin.yml
+  ansible.builtin.include_tasks: tmux_catppuccin.yml
