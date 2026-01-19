@@ -1,15 +1,14 @@
 # fzf is a general-purpose command-line fuzzy finder written in Go.
 # It is a fast, efficient, and easy-to-use tool that can be used to find
 # files, directories, and other items in a fuzzy manner.
-
 ---
-- name: "zsh/fzf: Install fzf"
+- name: "fzf: Install package"
   community.general.homebrew:
     name:
       - fzf
     state: present
 
-- name: "zsh/fzf: Configure fzf"
+- name: "fzf: Install keybindings and fuzzy completion"
   ansible.builtin.shell: |
     {{ homebrew_prefix }}/opt/fzf/install --all
   args:
@@ -19,7 +18,7 @@
     name: zsh
     tasks_from: mkdir_zshrc_d_prefix.yml
 
-- name: "zsh/fzf: Create fzf zsh config"
+- name: "fzf: Create zsh.d config"
   ansible.builtin.copy:
     dest: "{{ zshrc_d_prefix }}/fzf.zsh"
     mode: "0644"

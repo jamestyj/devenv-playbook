@@ -1,18 +1,18 @@
 ---
-- name: "zsh: Install Oh-My-Zsh"
+- name: "Oh-My-Zsh: Install from Github"
   ansible.builtin.git:
     repo: https://github.com/ohmyzsh/ohmyzsh
     dest: "~/.oh-my-zsh"
     update: no
 
-- name: "zsh: Install Oh-My-Zsh plugins"
+- name: "Oh-My-Zsh: Install plugins"
   ansible.builtin.git:
     repo: "{{ item.repo }}"
     dest: "~/.oh-my-zsh/custom/plugins/{{ item.name }}"
     update: no
   loop: "{{ zsh_oh_my_zsh_plugins }}"
 
-- name: "zsh: Create .zshrc from Oh-My-Zsh"
+- name: "Oh-My-Zsh: Create .zshrc from template"
   ansible.builtin.copy:
     src: "~/.oh-my-zsh/templates/zshrc.zsh-template"
     dest: "~/.zshrc"
@@ -20,14 +20,16 @@
     force: no
     mode: "0644"
 
-- name: "zsh: Update plugins config"
+- name: "Oh-My-Zsh: Update plugins config"
   ansible.builtin.lineinfile:
     path: ~/.zshrc
     regexp: '^plugins=\(git'
-    line: "plugins=(git {{ zsh_oh_my_zsh_plugins | map(attribute='name') | join(' ') }})"
+    line:
+      "plugins=(git {{ zsh_oh_my_zsh_plugins | map(attribute='name') | join(' ')
+      }})"
     state: present
 
-- name: "zsh: Update theme config"
+- name: "Oh-My-Zsh: Disable theme for Starship"
   ansible.builtin.lineinfile:
     path: ~/.zshrc
     regexp: "^ZSH_THEME="

@@ -2,27 +2,26 @@
 # It gives more features and colours to distinguish file types and metadata.
 # It knows about symlinks, extended attributes, and Git. And it’s small,
 # fast, and just one single binary.
-
 ---
-- name: "zsh: Install eza"
+- name: "eza: Install package"
   community.general.homebrew:
     name:
       - eza
     state: present
 
-- name: "zsh: eza create config directory"
+- name: "eza: Create config directory"
   ansible.builtin.file:
     path: ~/.config/eza
     state: directory
     mode: "0755"
 
-- name: "zsh: eza download theme"
+- name: "eza: Install catppuccin-mocha theme"
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/eza-community/eza-themes/refs/heads/main/themes/catppuccin-mocha.yml
     dest: ~/.config/eza/theme.yml
     mode: "0644"
 
-- name: "zsh: Add path for zsh-eza"
+- name: "eza: Add path for zsh-eza"
   ansible.builtin.copy:
     dest: "~/.zprofile"
     content: |
