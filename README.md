@@ -5,49 +5,49 @@ development environment on Windows Subsystem for Linux (WSL).
 
 ## 🚀 Features
 
-- **Shell:** Zsh with Oh-My-Zsh and productivity plugins:
-  - `zsh-autosuggestions`
-  - `zsh-syntax-highlighting`
-  - `fzf-tab`
-- **Package Manager:** Homebrew (Linuxbrew)
+- **Shell & Prompt:**
+  - **Zsh** with Oh-My-Zsh
+  - Zsh productivity plugins: `zsh-autosuggestions`, `zsh-syntax-highlighting`,
+    `fzf-tab`, `zsh-eza`
+  - **Starship** prompt (Catppuccin theme)
+- **Terminal Multiplexer:**
+  - **tmux** with Catppuccin theme and automatic session management
+- **Package Manager:**
+  - **Homebrew** (consistent package management across macOS and Linux)
 - **CLI Tools:**
-  - **Navigation & Search:** `ripgrep` (rg), `fd`, `fzf`, `sd`
-  - **File & System Monitoring:** `btop`, `htop`, `eza` (ls), `bat` (cat), `gdu`
-    (disk usage, gdu-go)
-  - **Development Tools:**
-    - **Editor:** `neovim` (nvim)
-    - **JavaScript:** `bun`, `npm`, `pnpm`
-    - **Python:** `uv`
-    - **Utilities:** `glow` (markdown renderer)
+  - **Navigation & Search:** `ripgrep` (rg), `fd` (modern find), `fzf` (fuzzy
+    finder)
+  - **System Monitoring:** `btop` (modern htop), `htop`, `gdu` (disk usage),
+    `neofetch`
+  - **File Management:** `eza` (modern ls), `bat` (modern cat)
+  - **Utilities:** `glow` (markdown renderer)
+- **AI Tools:**
+  - **opencode** (AI assistant with API key)
+- **Development Stack:**
+  - **Editor:** `neovim` (nvim)
+  - **JavaScript:** `bun`, `npm`, `pnpm`
+  - **Python:** `uv`
+  - **Formatters:** `prettier`
+- **System Configuration:**
+  - SSH Keychain management (SSH agent)
+  - Locale configuration (`en_US.UTF-8`)
+  - Git configuration (`.gitconfig`)
 
-## 🛠️ Getting Started
+## 🛠️ Getting Started (WSL)
 
-### 1. Install Ubuntu in WSL
+### 1. Install Ubuntu
 
-If you haven't already, install the default Ubuntu distribution by running the
-following commands in Windows Terminal:
+Install the default Ubuntu distribution by running the following commands in
+Windows Terminal:
 
 ```Powershell
 wsl --install
 wsl -d Ubuntu
 ```
 
-#### Install a Nerd font
-
-Starship uses many special glyphs (icons) for Git, Python, Rust, etc. If you see
-broken squares or weird characters, it's because your terminal font doesn't
-support them.
-
-1. Download a font from Nerd Fonts (e.g., FiraCode Nerd Font or JetBrainsMono
-   Nerd Font).
-
-2. On Windows (if using WSL): Install the font on Windows, then open your
-   Terminal Settings and set the "Font face" to the Nerd Font version.
-
-3. On VS Code: Go to Settings, search for terminal.integrated.fontFamily, and
-   set it to your Nerd Font (e.g., 'FiraCode Nerd Font').
-
 ### 2. Copy SSH keys
+
+Copy existing SSH keys from Windows host for Github private repository access:
 
 ```Bash
 cp /mnt/c/Users/<your-username>/.ssh/id_ed25519* ~/.ssh/
@@ -66,16 +66,14 @@ git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-playbook
 
 ### Git Hooks
 
-This project uses a native Git pre-commit hook to run syntax checks and
-`ansible-lint` before every commit.
-
-To install the hook, run:
+A Git pre-commit hook is used to run syntax checks and `ansible-lint` before
+every commit. To install (symlink) the hook, run:
 
 ```bash
 ./hooks/install-pre-commit.sh
 ```
 
-### Install ansible-lint depedencies for VS Code and derivatives.
+### Ansible-lint dependencies for VS Code and derivatives (WSL)
 
 ```Bash
 sudo apt update
@@ -83,14 +81,26 @@ sudo apt install pipx python3-venv -y
 pipx install --include-deps ansible-dev-tools
 ```
 
+## 📝 Fonts
+
+Starship, Catppuccin, and eza use many special glyphs (icons) for Git, Python,
+Rust, etc. If you see broken squares or weird characters, it's because your
+terminal font doesn't support them. To fix this:
+
+1. Download a font from [Nerd Fonts](https://www.nerdfonts.com/) (e.g., FiraCode
+   Nerd Font or JetBrainsMono Nerd Font).
+
+2. Install the font, then open your Terminal Settings and set the "Font face" to
+   the Nerd Font version.
+
+3. In VS Code: Go to Settings, search for terminal.integrated.fontFamily, and
+   set it to your Nerd Font (e.g., 'FiraCode Nerd Font').
+
 ## 📝 TODO
 
-- [ ] Copy `.gitconfig`
-- [ ] Install `opencode`
 - [ ] Detailed Neovim configuration (LSP, plugins)
   - [Dotfyle - Trending Colorschemes](https://dotfyle.com/neovim/colorscheme/trending)
   - [jdhao/nvim-config](https://github.com/jdhao/nvim-config)
   - NVchad
-  - vim config
 - [ ] Support MacOS
 - [ ] Test clean install on Ubuntu

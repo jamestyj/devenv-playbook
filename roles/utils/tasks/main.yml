@@ -7,3 +7,6 @@
 
 - name: "Utils: Configure git"
   ansible.builtin.include_tasks: git.yml
+
+- name: "Utils: Configure opencode"
+  ansible.builtin.include_tasks: opencode.yml
