@@ -1,2 +1,3 @@
 ---
 homebrew_prefix: "/home/linuxbrew/.linuxbrew"
+zshrc_d_prefix: "~/.zshrc.d"

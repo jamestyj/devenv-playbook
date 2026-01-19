@@ -1,0 +1,7 @@
+---
+- name: "Homebrew: Create zsh config"
+  ansible.builtin.copy:
+    dest: "{{ zshrc_d_prefix }}/homebrew.zsh"
+    mode: "0644"
+    content: |
+      eval "$({{ homebrew_prefix }}/bin/brew shellenv)"

@@ -1,17 +1,28 @@
+# eza is a modern, maintained "ls" replacement.
+# It gives more features and colours to distinguish file types and metadata.
+# It knows about symlinks, extended attributes, and Git. And it’s small,
+# fast, and just one single binary.
+
 ---
-- name: "Homebrew: eza create config directory"
+- name: "zsh: Install eza"
+  community.general.homebrew:
+    name:
+      - eza
+    state: present
+
+- name: "zsh: eza create config directory"
   ansible.builtin.file:
     path: ~/.config/eza
     state: directory
-    mode: '0755'
+    mode: "0755"
 
-- name: "Homebrew: eza download theme"
+- name: "zsh: eza download theme"
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/eza-community/eza-themes/refs/heads/main/themes/catppuccin-mocha.yml
     dest: ~/.config/eza/theme.yml
-    mode: '0644'
+    mode: "0644"
 
-- name: "Homebrew: Add path for zsh-eza"
+- name: "zsh: Add path for zsh-eza"
   ansible.builtin.copy:
     dest: "~/.zprofile"
     content: |

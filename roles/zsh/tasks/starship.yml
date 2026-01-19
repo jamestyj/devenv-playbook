@@ -1,0 +1,19 @@
+---
+- name: "zsh: Install Starship"
+  community.general.homebrew:
+    name:
+      - starship
+    state: present
+
+- name: "zsh: Configure Starship"
+  ansible.builtin.shell: |
+    starship preset catppuccin-powerline -o ~/.config/starship.toml
+  args:
+    creates: "~/.config/starship.toml"
+
+- name: "zsh: Create Starship zsh config"
+  ansible.builtin.copy:
+    dest: "{{ zshrc_d_prefix }}/starship.zsh"
+    mode: "0644"
+    content: |
+      eval "$(starship init zsh)"

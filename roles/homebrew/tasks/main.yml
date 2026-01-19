@@ -44,12 +44,9 @@
       - ripgrep
       - fd
       - bat
-      - eza
       - neovim
-      - fzf
       - glow
       - gdu # gdu-go
-      - starship
       - neofetch
       # devtools - General
       - prettier
@@ -60,12 +57,3 @@
       # devtools - Python
       - uv
     state: present
-
-- name: "Homebrew: Configure fzf"
-  ansible.builtin.shell: |
-    $(brew --prefix)/opt/fzf/install --all
-  args:
-    creates: ~/.fzf.zsh
-
-- name: "Homebrew: Configure eza"
-  ansible.builtin.import_tasks: eza.yml

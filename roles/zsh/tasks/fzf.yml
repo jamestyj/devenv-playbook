@@ -1,0 +1,29 @@
+# fzf is a general-purpose command-line fuzzy finder written in Go.
+# It is a fast, efficient, and easy-to-use tool that can be used to find
+# files, directories, and other items in a fuzzy manner.
+
+---
+- name: "zsh: Install fzf"
+  community.general.homebrew:
+    name:
+      - fzf
+    state: present
+
+- name: "zsh: Configure fzf"
+  ansible.builtin.shell: |
+    {{ homebrew_prefix }}/opt/fzf/install --all
+  args:
+    creates: ~/.fzf.zsh
+
+- name: "zsh: Create fzf zsh config"
+  ansible.builtin.copy:
+    dest: "{{ zshrc_d_prefix }}/fzf.zsh"
+    mode: "0644"
+    content: |
+      # Preview file content using 'bat'
+      FZF_CTRL_T_OPTS="
+        --preview 'bat --style=numbers --color=always --line-range :500 {}'
+        --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+      # Preview directory tree for ALT-C
+      FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"

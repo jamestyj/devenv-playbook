@@ -39,3 +39,14 @@
       set -agF status-right "#{E:@catppuccin_status_battery}"
 
       run ~/.config/tmux/plugins/tmux-plugins/tmux-cpu/cpu.tmux
+
+- name: "tmux: Create tmux config"
+  ansible.builtin.copy:
+    dest: "{{ zshrc_d_prefix }}/tmux.zsh"
+    mode: "0644"
+    content: |
+      # Attach to existing tmux session named "main", or create a new one if it
+      # doesn't exist.
+      if [ -z "$TMUX" ]; then
+        tmux attach-session -t main 2>/dev/null || tmux new-session -s main
+      fi

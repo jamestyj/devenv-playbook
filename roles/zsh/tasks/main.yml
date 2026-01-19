@@ -1,48 +1,44 @@
 ---
-- name: "Zsh: Install zsh"
+- name: "zsh: Install zsh"
   ansible.builtin.package:
     name:
       - zsh
     state: present
   become: true
 
-- name: "Zsh: Set default shell"
+- name: "zsh: Set default shell"
   ansible.builtin.user:
     name: "{{ ansible_facts.user_id }}"
     shell: /bin/zsh
   become: true
 
-- name: "Zsh: Install Oh-My-Zsh"
-  ansible.builtin.git:
-    repo: https://github.com/ohmyzsh/ohmyzsh
-    dest: "~/.oh-my-zsh"
-    update: no # Only clone if the directory doesn't exist
+- name: "zsh: Create {{ zshrc_d_prefix }} config directory"
+  ansible.builtin.file:
+    path: "{{ zshrc_d_prefix }}"
+    state: directory
+    mode: "0755"
+  notify: "Homebrew: Create zsh config"
 
-- name: "Zsh: Install Oh-My-Zsh plugins"
-  ansible.builtin.git:
-    repo: "{{ item.repo }}"
-    dest: "~/.oh-my-zsh/custom/plugins/{{ item.name }}"
-    update: no
-  loop: "{{ zsh_oh_my_zsh_plugins }}"
+- name: "zsh: Load {{ zshrc_d_prefix }}/*.zsh"
+  ansible.builtin.blockinfile:
+    path: "~/.zshrc"
+    block: |
+      # Load {{ zshrc_d_prefix }}/*.zsh
+      for ZSH_FILE in {{ zshrc_d_prefix }}/*.zsh(N); do
+        source "${ZSH_FILE}"
+      done
 
-- name: "Zsh: Create .zshrc from Oh-My-Zsh"
-  ansible.builtin.copy:
-    src: "~/.oh-my-zsh/templates/zshrc.zsh-template"
-    dest: "~/.zshrc"
-    remote_src: yes
-    force: no # Won't overwrite if file already exists
-    mode: "0644"
+      # WSL: Change to Linux home directory
+      cd ~
 
-- name: "Zsh: Update plugins config"
-  ansible.builtin.lineinfile:
-    path: ~/.zshrc
-    regexp: '^plugins=\(git'
-    line: "plugins=(git {{ zsh_oh_my_zsh_plugins | map(attribute='name') | join(' ') }})"
-    state: present
+- name: "zsh: Setup Oh-My-Zsh"
+  ansible.builtin.include_tasks: oh-my-zsh.yml
 
-- name: "Zsh: Update theme config"
-  ansible.builtin.lineinfile:
-    path: ~/.zshrc
-    regexp: "^ZSH_THEME="
-    line: "ZSH_THEME="
-    state: present
+- name: "zsh: Setup fzf"
+  ansible.builtin.import_tasks: fzf.yml
+
+- name: "zsh: Setup eza"
+  ansible.builtin.import_tasks: eza.yml
+
+- name: "zsh: Setup Starship"
+  ansible.builtin.include_tasks: starship.yml

@@ -5,8 +5,7 @@
 
   roles:
     - locale
-    - zsh
     - homebrew
-    - dotfiles
+    - zsh
     - tmux
     - keychain

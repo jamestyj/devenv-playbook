@@ -23,3 +23,10 @@
     content: |
       eval $(keychain --eval --agents ssh id_ed25519)
     mode: "0644"
+
+- name: "Keychain: Create Keychain config"
+  ansible.builtin.copy:
+    dest: "{{ zshrc_d_prefix }}/keychain.zsh"
+    mode: "0644"
+    content: |
+      eval `keychain --eval --agents ssh id_ed25519`
