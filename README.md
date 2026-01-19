@@ -29,6 +29,16 @@ wsl --install
 wsl -d Ubuntu
 ```
 
+#### Install a Nerd font
+
+Starship uses many special glyphs (icons) for Git, Python, Rust, etc. If you see broken squares or weird characters, it's because your terminal font doesn't support them.
+
+1. Download a font from Nerd Fonts (e.g., FiraCode Nerd Font or JetBrainsMono Nerd Font).
+
+2. On Windows (if using WSL): Install the font on Windows, then open your Terminal Settings and set the "Font face" to the Nerd Font version.
+
+3. On VS Code: Go to Settings, search for terminal.integrated.fontFamily, and set it to your Nerd Font (e.g., 'FiraCode Nerd Font').
+
 ### 2. Copy SSH keys
 
 ```Bash

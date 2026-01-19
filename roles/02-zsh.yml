@@ -17,7 +17,6 @@
       ansible.builtin.package:
         name:
           - zsh
-          - tree
         state: present
       become: true
 
@@ -53,4 +52,11 @@
         path: ~/.zshrc
         regexp: '^plugins=\(git'
         line: "plugins=(git {{ oh_my_zsh_plugins | map(attribute='name') | join(' ') }})"
+        state: present
+
+    - name: "Zsh: Update theme config"
+      ansible.builtin.lineinfile:
+        path: ~/.zshrc
+        regexp: '^ZSH_THEME='
+        line: "ZSH_THEME="
         state: present

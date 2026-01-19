@@ -19,8 +19,14 @@
           # Preview directory tree for ALT-C
           FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
-          # SSH agent
-          eval "$(ssh-agent -s)" &>/dev/null
+          # Starship prompt
+          eval "$(starship init zsh)"
       loop:
         - .bashrc
         - .zshrc
+
+    - name: "Starship prompt config"
+      ansible.builtin.shell: |
+        starship preset catppuccin-powerline -o ~/.config/starship.toml
+      args:
+        creates: "~/.config/starship.toml"
