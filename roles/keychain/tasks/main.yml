@@ -1,0 +1,19 @@
+---
+- name: "Keychain: Install keychain"
+  ansible.builtin.package:
+    name: keychain
+    state: present
+  become: true
+
+- name: "Keychain: Create VS Code config directory"
+  ansible.builtin.file:
+    path: "~/.vscode-server"
+    state: directory
+    mode: "0755"
+
+- name: "Keychain: Create VS Code config"
+  ansible.builtin.copy:
+    dest: "~/.vscode-server/server-env-setup"
+    content: |
+      eval $(keychain --eval --agents ssh id_ed25519)
+    mode: "0644"

@@ -35,7 +35,7 @@ check_step() {
   echo ""
 }
 
-check_step "1/2" "ansible-playbook --syntax-check roles/*"
+check_step "1/2" "ansible-playbook --syntax-check local.yml"
 check_step "2/2" "ansible-lint"
 
 total_duration=$(( $(date +%s) - start_total ))

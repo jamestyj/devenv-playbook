@@ -47,17 +47,10 @@ chmod 600 ~/.ssh/id_ed25519
 chmod 644 ~/.ssh/id_ed25519.pub
 ```
 
-### 3. Install dependencies
+### 3. Checkout repo and run setup script
 
 ```Bash
-mkdir ~/code
-git clone https://github.com/jamestyj/devenv-playbook.git
-cd devenv-playbook
-sudo apt update && sudo apt install ansible -y
-```
-
-### 4. Run wrapper Ansible script:
-```bash
+git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-playbook
 ./setup.sh
 ```
 

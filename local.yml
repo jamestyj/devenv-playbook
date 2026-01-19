@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  roles:
+    - locale
+    - zsh
+    - homebrew
+    - dotfiles
+    - tmux
+    - keychain

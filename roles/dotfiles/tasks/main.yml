@@ -1,0 +1,42 @@
+---
+- name: "zsh: Create zsh.d/ config directory"
+  ansible.builtin.file:
+    path: "~/.config/zsh.d"
+    state: directory
+    mode: "0755"
+
+- name: "Configure shell profiles"
+  ansible.builtin.blockinfile:
+    path: "~/{{ item }}"
+    block: |
+
+      # Load ~/.config/zsh.d/*.zsh
+      for ZSH_FILE in ~/.config/zsh.d/*.zsh(N); do
+        source "${ZSH_FILE}"
+      done
+
+      # Homebrew shell variables
+      eval "$({{ homebrew_prefix }}/bin/brew shellenv)"
+
+      # Preview file content using 'bat'
+      FZF_CTRL_T_OPTS="
+        --preview 'bat --style=numbers --color=always --line-range :500 {}'
+        --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+      # Preview directory tree for ALT-C
+      FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+      # SSH agent
+      eval `keychain --eval --agents ssh id_ed25519`
+
+      # Starship prompt
+      eval "$(starship init zsh)"
+  loop:
+    - .bashrc
+    - .zshrc
+
+- name: "Starship prompt config"
+  ansible.builtin.shell: |
+    starship preset catppuccin-powerline -o ~/.config/starship.toml
+  args:
+    creates: "~/.config/starship.toml"

@@ -1,0 +1,48 @@
+---
+- name: "Zsh: Install zsh"
+  ansible.builtin.package:
+    name:
+      - zsh
+    state: present
+  become: true
+
+- name: "Zsh: Set default shell"
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    shell: /bin/zsh
+  become: true
+
+- name: "Zsh: Install Oh-My-Zsh"
+  ansible.builtin.git:
+    repo: https://github.com/ohmyzsh/ohmyzsh
+    dest: "~/.oh-my-zsh"
+    update: no # Only clone if the directory doesn't exist
+
+- name: "Zsh: Install Oh-My-Zsh plugins"
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "~/.oh-my-zsh/custom/plugins/{{ item.name }}"
+    update: no
+  loop: "{{ oh_my_zsh_plugins }}"
+
+- name: "Zsh: Create .zshrc from Oh-My-Zsh"
+  ansible.builtin.copy:
+    src: "~/.oh-my-zsh/templates/zshrc.zsh-template"
+    dest: "~/.zshrc"
+    remote_src: yes
+    force: no # Won't overwrite if file already exists
+    mode: "0644"
+
+- name: "Zsh: Update plugins config"
+  ansible.builtin.lineinfile:
+    path: ~/.zshrc
+    regexp: '^plugins=\(git'
+    line: "plugins=(git {{ oh_my_zsh_plugins | map(attribute='name') | join(' ') }})"
+    state: present
+
+- name: "Zsh: Update theme config"
+  ansible.builtin.lineinfile:
+    path: ~/.zshrc
+    regexp: "^ZSH_THEME="
+    line: "ZSH_THEME="
+    state: present

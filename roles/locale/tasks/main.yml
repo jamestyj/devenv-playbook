@@ -1,0 +1,9 @@
+---
+- name: "Locale: Set locale"
+  ansible.builtin.shell: |
+    locale-gen en_US.UTF-8
+    update-locale LANG=en_US.UTF-8
+  become: true
+  args:
+    creates: "/etc/locale.conf"
+  when: ansible_os_family == "Debian"

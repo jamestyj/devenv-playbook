@@ -1,0 +1,12 @@
+---
+oh_my_zsh_plugins:
+  - {
+      name: "zsh-autosuggestions",
+      repo: "https://github.com/zsh-users/zsh-autosuggestions",
+    }
+  - {
+      name: "zsh-syntax-highlighting",
+      repo: "https://github.com/zsh-users/zsh-syntax-highlighting",
+    }
+  - { name: "fzf-tab", repo: "https://github.com/Aloxaf/fzf-tab" }
+  - { name: "zsh-eza", repo: "https://github.com/z-shell/zsh-eza" }
