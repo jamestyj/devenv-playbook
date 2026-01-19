@@ -29,27 +29,27 @@ wsl --install
 wsl -d Ubuntu
 ```
 
-### 2. Prerequisites
+### 2. Copy SSH keys
 
-Before running the playbook, ensure you have:
-1. Copied your SSH keys to `~/.ssh/`.
-2. Installed Git: `sudo apt update && sudo apt install git -y`.
+```Bash
+cp /mnt/c/Users/<your-username>/.ssh/id_ed25519* ~/.ssh/
+chmod 600 ~/.ssh/id_ed25519
+chmod 644 ~/.ssh/id_ed25519.pub
+```
 
-### 3. Installation
+### 3. Install dependencies
 
-1. Checkout this repository:
-   ```bash
-   git clone https://github.com/jamestyj/devenv-playbook.git
-   cd devenv-playbook
-   ```
+```Bash
+mkdir ~/code
+git clone https://github.com/jamestyj/devenv-playbook.git
+cd devenv-playbook
+sudo apt update && sudo apt install ansible -y
+```
 
-2. Install Ansible:
-   Follow the [official Ubuntu installation guide](https://docs.ansible.com/projects/ansible/latest/installation_guide/installation_distros.html#installing-ansible-on-ubuntu).
-
-3. Run the setup script:
-   ```bash
-   ./setup.sh
-   ```
+### 4. Run wrapper Ansible script:
+```bash
+./setup.sh
+```
 
 ## 🛠️ Development
 
@@ -70,3 +70,7 @@ To install the hook, run:
 - [ ] Detailed Neovim configuration (LSP, plugins)
   - [Dotfyle - Trending Colorschemes](https://dotfyle.com/neovim/colorscheme/trending)
   - [jdhao/nvim-config](https://github.com/jdhao/nvim-config)
+  - NVchad
+  - vim config
+- [ ] Starship prompt
+- [ ] Support MacOS
