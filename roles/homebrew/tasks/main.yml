@@ -15,8 +15,8 @@
   ansible.builtin.file:
     path: "{{ homebrew_prefix }}"
     state: directory
-    owner: "{{ ansible_env.USER }}"
-    group: "{{ ansible_env.USER }}"
+    owner: "{{ ansible_facts.user_id }}"
+    group: "{{ ansible_facts.user_id }}"
     mode: "0755"
   become: true
 
