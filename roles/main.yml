@@ -3,3 +3,4 @@
 - ansible.builtin.import_playbook: 02-zsh.yml
 - ansible.builtin.import_playbook: 03-homebrew.yml
 - ansible.builtin.import_playbook: 04-zsh_n_bash_rc.yml
+- ansible.builtin.import_playbook: 05-tmux.yml

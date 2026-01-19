@@ -1,5 +1,5 @@
 # .ansible-lint
-skip_list:  # Optional: turn errors into warnings instead of failing
+skip_list:
   - yaml[indentation]
   - latest[git]
   - name[play]
