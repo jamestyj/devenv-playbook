@@ -35,7 +35,7 @@ development environment on Windows Subsystem for Linux (WSL).
 
 ## 🛠️ Getting Started (WSL)
 
-### 1. Install Ubuntu
+### Install Ubuntu
 
 Install the default Ubuntu distribution by running the following commands in
 Windows Terminal:
@@ -45,22 +45,18 @@ wsl --install
 wsl -d Ubuntu
 ```
 
-### 2. Copy SSH keys
+### Run script
 
-Copy existing SSH keys from Windows host for Github private repository access:
+1. Copy existing SSH keys from Windows host for Github private repository access.
+2. Checkout Git repository.
+3. Run setup script. Enter your SSH passpharse and root password when prompted.
 
+Run these commands:
 ```Bash
 mkdir -p ~/.ssh/ && cp /mnt/c/Users/<your-username>/.ssh/id_ed25519* ~/.ssh/
 chmod 600 ~/.ssh/id_ed25519
 chmod 644 ~/.ssh/id_ed25519.pub
-```
-
-### 3. Checkout repo and run setup script
-
-Execute the following, and enter your SSH passpharse and root password when
-prompted:
-
-```Bash
+ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
 cd ~ && git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-playbook
 ./setup.sh
 ```
