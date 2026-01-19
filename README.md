@@ -62,6 +62,19 @@ git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-playbook
 ./setup.sh
 ```
 
+## 🛠️ Post-Install
+
+### Neovim + NvChad
+
+1. Run :MasonInstallAll and :TSInstallAll command after lazy.nvim finishes
+   downloading plugins.
+2. Suggested plugins to install:
+   - **Misc**: tree-sitter-cli, glow, jq, prettier
+   - **DevOps**: ansible-lint, ansible-language-server, bash-language-server,
+     shellcheck, yamllint
+   - **Web Dev**: astro-language-server, typescript-language-server, css-lsp,
+     html-lsp, tailwindcss-language-server, eslint-lsp, jsonlint, markdownlint
+
 ## 🛠️ Development
 
 ### Git Hooks
@@ -98,9 +111,5 @@ terminal font doesn't support them. To fix this:
 
 ## 📝 TODO
 
-- [ ] Detailed Neovim configuration (LSP, plugins)
-  - [Dotfyle - Trending Colorschemes](https://dotfyle.com/neovim/colorscheme/trending)
-  - [jdhao/nvim-config](https://github.com/jdhao/nvim-config)
-  - NVchad
-- [ ] Support MacOS
 - [ ] Test clean install on Ubuntu
+- [ ] Support MacOS

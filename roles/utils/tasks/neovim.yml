@@ -1,0 +1,49 @@
+---
+- name: "utils/neovim: Install neovim"
+  community.general.homebrew:
+    name: neovim
+    state: present
+
+- name: "utils/neovim: Create config directory"
+  ansible.builtin.file:
+    path: "~/.config/nvim"
+    state: directory
+    mode: "0755"
+
+# This check is needed because .git/ is deleted post install.
+- name: "utils/neovim: Check if NvChad already installed"
+  ansible.builtin.stat:
+    path: "~/.config/nvim/lua/chadrc.lua"
+  register: utils_nvchad_installed
+
+- name: "utils/neovim: Install NvChad"
+  ansible.builtin.git:
+    repo: https://github.com/NvChad/starter
+    dest: "~/.config/nvim"
+    update: no
+  when: not utils_nvchad_installed.stat.exists
+
+# https://nvchad.com/docs/quickstart/install
+- name: "utils/neovim: Delete NvChad .git/"
+  ansible.builtin.file:
+    path: "~/.config/nvim/.git"
+    state: absent
+
+- name: "utils/neovim: Set NvChad theme"
+  ansible.builtin.lineinfile:
+    path: ~/.config/nvim/lua/chadrc.lua
+    regexp: 'theme = "'
+    line: "theme = 'catppuccin'"
+    state: present
+
+- name: "utils/neovim: zsh config"
+  ansible.builtin.copy:
+    dest: "{{ zshrc_d_prefix }}/neovim.zsh"
+    mode: "0644"
+    content: |
+      export EDITOR="nvim"
+      export VISUAL="nvim"
+      alias vim="nvim"
+      alias vi="nvim"
+      alias nf="nvim -c 'Telescope oldfiles'"
+      alias viz="nvim ~/.zshrc"

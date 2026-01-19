@@ -44,7 +44,6 @@
       - ripgrep
       - fd
       - bat
-      - neovim
       - glow
       - gdu # gdu-go
       - neofetch
