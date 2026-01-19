@@ -1,5 +1,5 @@
 ---
-oh_my_zsh_plugins:
+zsh_oh_my_zsh_plugins:
   - {
       name: "zsh-autosuggestions",
       repo: "https://github.com/zsh-users/zsh-autosuggestions",

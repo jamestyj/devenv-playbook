@@ -65,6 +65,14 @@ To install the hook, run:
 ./hooks/install-pre-commit.sh
 ```
 
+### Ansible-Lint in VS Code
+
+```Bash
+sudo apt update
+sudo apt install pipx python3-venv -y
+pipx install --include-deps ansible-dev-tools
+```
+
 ## 📝 TODO
 
 - [ ] Copy `.gitconfig`

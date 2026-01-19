@@ -23,7 +23,7 @@
     repo: "{{ item.repo }}"
     dest: "~/.oh-my-zsh/custom/plugins/{{ item.name }}"
     update: no
-  loop: "{{ oh_my_zsh_plugins }}"
+  loop: "{{ zsh_oh_my_zsh_plugins }}"
 
 - name: "Zsh: Create .zshrc from Oh-My-Zsh"
   ansible.builtin.copy:
@@ -37,7 +37,7 @@
   ansible.builtin.lineinfile:
     path: ~/.zshrc
     regexp: '^plugins=\(git'
-    line: "plugins=(git {{ oh_my_zsh_plugins | map(attribute='name') | join(' ') }})"
+    line: "plugins=(git {{ zsh_oh_my_zsh_plugins | map(attribute='name') | join(' ') }})"
     state: present
 
 - name: "Zsh: Update theme config"
