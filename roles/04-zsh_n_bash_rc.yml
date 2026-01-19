@@ -4,10 +4,22 @@
   vars:
     homebrew_prefix: "/home/linuxbrew/.linuxbrew"
   tasks:
+    - name: "zsh: Create zsh.d/ config directory"
+      ansible.builtin.file:
+        path: "~/.config/zsh.d"
+        state: directory
+        mode: "0755"
+
     - name: "Configure shell profiles"
       ansible.builtin.blockinfile:
         path: "~/{{ item }}"
         block: |
+
+          # Load ~/.config/zsh.d/*.zsh
+          for ZSH_FILE in ~/.config/zsh.d/*.zsh(N); do
+            source "${ZSH_FILE}"
+          done
+
           # Homebrew shell variables
           eval "$({{ homebrew_prefix }}/bin/brew shellenv)"
 
