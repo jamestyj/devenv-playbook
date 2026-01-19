@@ -1,5 +1,5 @@
 ---
-- name: "Locale: Set locale"
+- name: "locale: Set to en_US.UTF-8"
   ansible.builtin.shell: |
     locale-gen en_US.UTF-8
     update-locale LANG=en_US.UTF-8

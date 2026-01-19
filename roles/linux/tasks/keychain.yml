@@ -5,19 +5,19 @@
 # Works by installing keychain (which manages SSH agents and their environment
 # variables) and configuring it for VS Code.
 
-- name: "linux/keychain: Install keychain"
+- name: "keychain: Install package"
   ansible.builtin.package:
     name: keychain
     state: present
   become: true
 
-- name: "linux/keychain: Create VS Code config directory"
+- name: "keychain: Create VS Code config directory"
   ansible.builtin.file:
     path: "~/.vscode-server"
     state: directory
     mode: "0755"
 
-- name: "linux/keychain: Create VS Code config"
+- name: "keychain: Create VS Code config"
   ansible.builtin.copy:
     dest: "~/.vscode-server/server-env-setup"
     content: |
@@ -28,9 +28,9 @@
     name: zsh
     tasks_from: mkdir_zshrc_d_prefix.yml
 
-- name: "linux/keychain: Create Keychain config"
+- name: "keychain: Create zsh.d config"
   ansible.builtin.copy:
     dest: "{{ zshrc_d_prefix }}/keychain.zsh"
     mode: "0644"
     content: |
-      eval `keychain --eval --agents ssh id_ed25519`
+      eval $(keychain --eval --agents ssh id_ed25519)

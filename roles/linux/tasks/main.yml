@@ -1,6 +1,3 @@
 ---
-- name: "Linux: Configure locale"
-  ansible.builtin.include_tasks: locale.yml
-
-- name: "Linux: Configure keychain"
-  ansible.builtin.include_tasks: keychain.yml
+- ansible.builtin.include_tasks: locale.yml
+- ansible.builtin.include_tasks: keychain.yml

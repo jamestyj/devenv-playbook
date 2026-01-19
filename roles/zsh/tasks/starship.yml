@@ -1,11 +1,11 @@
 ---
-- name: "starship: Install"
+- name: "starship: Install package"
   community.general.homebrew:
     name:
       - starship
     state: present
 
-- name: "starship: Configure"
+- name: "starship: Configure catppuccin-powerline"
   ansible.builtin.shell: |
     "{{ homebrew_prefix }}"/opt/starship/bin/starship preset catppuccin-powerline -o ~/.config/starship.toml
   args:
