@@ -19,6 +19,9 @@
           # Preview directory tree for ALT-C
           FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
+          # SSH agent
+          eval `keychain --eval --agents ssh id_ed25519`
+
           # Starship prompt
           eval "$(starship init zsh)"
       loop:

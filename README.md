@@ -82,5 +82,4 @@ To install the hook, run:
   - [jdhao/nvim-config](https://github.com/jdhao/nvim-config)
   - NVchad
   - vim config
-- [ ] Starship prompt
 - [ ] Support MacOS
