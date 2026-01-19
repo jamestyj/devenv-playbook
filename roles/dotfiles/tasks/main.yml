@@ -31,6 +31,16 @@
 
       # Starship prompt
       eval "$(starship init zsh)"
+
+      # WSL: Change to Linux home directory
+      cd ~
+
+      # Attach to existing tmux session named "main", or create a new one if it
+      # doesn't exist.
+      if [ -z "$TMUX" ]; then
+        tmux attach-session -t main 2>/dev/null || tmux new-session -s main
+      fi
+
   loop:
     - .bashrc
     - .zshrc
