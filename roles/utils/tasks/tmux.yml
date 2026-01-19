@@ -1,5 +1,9 @@
 ---
-- name: "tmux: Create tmux zsh config"
+- ansible.builtin.include_role:
+    name: zsh
+    tasks_from: mkdir_zshrc_d_prefix.yml
+
+- name: "utils/tmux: Create tmux zsh config"
   ansible.builtin.copy:
     dest: "{{ zshrc_d_prefix }}/tmux.zsh"
     mode: "0644"
@@ -10,5 +14,5 @@
         tmux attach-session -t main 2>/dev/null || tmux new-session -s main
       fi
 
-- name: "tmux: Setup catppuccin"
+- name: "utils/tmux: Setup catppuccin"
   ansible.builtin.include_tasks: tmux_catppuccin.yml

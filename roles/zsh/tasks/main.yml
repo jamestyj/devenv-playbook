@@ -12,13 +12,6 @@
     shell: /bin/zsh
   become: true
 
-- name: "zsh: Create {{ zshrc_d_prefix }} config directory"
-  ansible.builtin.file:
-    path: "{{ zshrc_d_prefix }}"
-    state: directory
-    mode: "0755"
-  notify: "Utils: Create homebrew zsh config"
-
 - name: "zsh: Load {{ zshrc_d_prefix }}/*.zsh"
   ansible.builtin.blockinfile:
     path: "~/.zshrc"

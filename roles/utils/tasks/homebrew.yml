@@ -1,5 +1,5 @@
 ---
-- name: "Homebrew: Install dependencies"
+- name: "utils/homebrew: Install dependencies"
   ansible.builtin.package:
     name:
       - build-essential
@@ -11,7 +11,7 @@
     state: present
   become: true
 
-- name: "Homebrew: Create prefix directory"
+- name: "utils/homebrew: Create prefix directory"
   ansible.builtin.file:
     path: "{{ homebrew_prefix }}"
     state: directory
@@ -20,7 +20,7 @@
     mode: "0755"
   become: true
 
-- name: "Homebrew: Install Homebrew"
+- name: "utils/homebrew: Install Homebrew"
   ansible.builtin.shell: |
     set -o pipefail
     curl -fsSL https://github.com/Homebrew/brew/tarball/main | tar xz --strip 1 -C {{ homebrew_prefix }}
@@ -29,13 +29,25 @@
     chmod -R go-w {{ homebrew_prefix }}/share/zsh
   args:
     creates: "{{ homebrew_prefix }}/bin/brew"
+    executable: /bin/bash
 
-- name: "Homebrew: Add taps"
+- ansible.builtin.include_role:
+    name: zsh
+    tasks_from: mkdir_zshrc_d_prefix.yml
+
+- name: "utils/homebrew: Create zsh config"
+  ansible.builtin.copy:
+    dest: "{{ zshrc_d_prefix }}/homebrew.zsh"
+    mode: "0644"
+    content: |
+      eval "$({{ homebrew_prefix }}/bin/brew shellenv)"
+
+- name: "utils/homebrew: Add taps"
   community.general.homebrew_tap:
     name: oven-sh/bun
     state: present
 
-- name: "Homebrew: Install packages"
+- name: "utils/homebrew: Install packages"
   community.general.homebrew:
     name:
       # System utils

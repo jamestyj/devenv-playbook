@@ -3,19 +3,23 @@
 # files, directories, and other items in a fuzzy manner.
 
 ---
-- name: "zsh: Install fzf"
+- name: "zsh/fzf: Install fzf"
   community.general.homebrew:
     name:
       - fzf
     state: present
 
-- name: "zsh: Configure fzf"
+- name: "zsh/fzf: Configure fzf"
   ansible.builtin.shell: |
     {{ homebrew_prefix }}/opt/fzf/install --all
   args:
     creates: ~/.fzf.zsh
 
-- name: "zsh: Create fzf zsh config"
+- ansible.builtin.include_role:
+    name: zsh
+    tasks_from: mkdir_zshrc_d_prefix.yml
+
+- name: "zsh/fzf: Create fzf zsh config"
   ansible.builtin.copy:
     dest: "{{ zshrc_d_prefix }}/fzf.zsh"
     mode: "0644"

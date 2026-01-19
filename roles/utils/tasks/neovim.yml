@@ -36,7 +36,11 @@
     line: "theme = 'catppuccin'"
     state: present
 
-- name: "utils/neovim: zsh config"
+- ansible.builtin.include_role:
+    name: zsh
+    tasks_from: mkdir_zshrc_d_prefix.yml
+
+- name: "utils/neovim: Create zsh config"
   ansible.builtin.copy:
     dest: "{{ zshrc_d_prefix }}/neovim.zsh"
     mode: "0644"
