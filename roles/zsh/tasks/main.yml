@@ -12,18 +12,6 @@
     shell: /bin/zsh
   become: true
 
-- name: "zsh: Load {{ zshrc_d_prefix }}/*.zsh"
-  ansible.builtin.blockinfile:
-    path: "~/.zshrc"
-    block: |
-      # Load {{ zshrc_d_prefix }}/*.zsh
-      for ZSH_FILE in {{ zshrc_d_prefix }}/*.zsh(N); do
-        source "${ZSH_FILE}"
-      done
-
-      # WSL: Change to Linux home directory
-      cd ~
-
 - name: "zsh: Setup Oh-My-Zsh"
   ansible.builtin.include_tasks: oh-my-zsh.yml
 
@@ -35,3 +23,15 @@
 
 - name: "zsh: Setup Starship"
   ansible.builtin.include_tasks: starship.yml
+
+- name: "zsh: Load {{ zshrc_d_prefix }}/*.zsh"
+  ansible.builtin.blockinfile:
+    path: "~/.zshrc"
+    block: |
+      # Load {{ zshrc_d_prefix }}/*.zsh
+      for ZSH_FILE in {{ zshrc_d_prefix }}/*.zsh(N); do
+        source "${ZSH_FILE}"
+      done
+
+      # WSL: Change to Linux home directory
+      cd ~

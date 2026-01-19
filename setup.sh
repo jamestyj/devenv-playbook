@@ -7,4 +7,4 @@ if ! command -v ansible &> /dev/null; then
   fi
 fi
 ansible-galaxy collection install -r requirements.yml
-ansible-playbook local.yml -K -v
+ansible-playbook local.yml -K
