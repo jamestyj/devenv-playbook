@@ -57,7 +57,8 @@ chmod 644 ~/.ssh/id_ed25519.pub
 
 ### 3. Checkout repo and run setup script
 
-Execute the following, and enter your SSH passpharse and root password when prompted:
+Execute the following, and enter your SSH passpharse and root password when
+prompted:
 
 ```Bash
 cd ~ && git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-playbook
@@ -113,5 +114,4 @@ terminal font doesn't support them. To fix this:
 
 ## 📝 TODO
 
-- [ ] Test clean install on Ubuntu
 - [ ] Support MacOS
