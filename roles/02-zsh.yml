@@ -11,6 +11,7 @@
           repo: "https://github.com/zsh-users/zsh-syntax-highlighting",
         }
       - { name: "fzf-tab", repo: "https://github.com/Aloxaf/fzf-tab" }
+      - { name: "zsh-eza", repo: "https://github.com/z-shell/zsh-eza" }
   tasks:
     - name: "Zsh: Install zsh"
       ansible.builtin.package:

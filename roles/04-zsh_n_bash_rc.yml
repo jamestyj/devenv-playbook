@@ -20,8 +20,7 @@
           FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
           # SSH agent
-          eval "$(ssh-agent -s)"
-          ssh-add
+          eval "$(ssh-agent -s)" &>/dev/null
       loop:
         - .bashrc
         - .zshrc

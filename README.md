@@ -10,15 +10,13 @@ A collection of Ansible playbooks to automate the setup of a productive developm
   - `fzf-tab`
 - **Package Manager:** Homebrew (Linuxbrew)
 - **CLI Tools:**
-  - `bun` (JavaScript runtime)
-  - `btop` (Resource monitor)
-  - `ripgrep` (Modern grep)
-  - `fd` (Modern find)
-  - `bat` (Modern cat)
-  - `eza` (Modern ls)
-  - `sd` (Modern sed)
-  - `neovim` (Text editor)
-  - `fzf` (Fuzzy finder)
+  - **Navigation & Search:** `ripgrep` (rg), `fd`, `fzf`, `sd`
+  - **File & System Monitoring:** `btop`, `htop`, `eza` (ls), `bat` (cat), `gdu` (disk usage, gdu-go)
+  - **Development Tools:**
+    - **Editor:** `neovim` (nvim)
+    - **JavaScript:** `bun`, `npm`, `pnpm`
+    - **Python:** `uv`
+    - **Utilities:** `glow` (markdown renderer)
 
 ## 🛠️ Getting Started
 
