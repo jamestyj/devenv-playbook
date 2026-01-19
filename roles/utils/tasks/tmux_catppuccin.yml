@@ -1,17 +1,17 @@
 ---
-- name: "tmux: Create config directory"
+- name: "tmux/catppuccin: Create config directory"
   ansible.builtin.file:
     path: "~/.config/tmux/plugins/catppuccin"
     state: directory
     mode: "0755"
 
-- name: "tmux: Install catppuccin"
+- name: "tmux/catppuccin: Install plugin"
   ansible.builtin.git:
     repo: https://github.com/catppuccin/tmux
     dest: "~/.config/tmux/plugins/catppuccin/tmux"
     update: no
 
-- name: "tmux: Create tmux config"
+- name: "tmux/catppuccin: Create config"
   ansible.builtin.copy:
     dest: "~/.tmux.conf"
     mode: "0644"

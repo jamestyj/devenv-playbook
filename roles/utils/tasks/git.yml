@@ -1,5 +1,5 @@
 ---
-- name: "Utils: Create git config"
+- name: "git: Add .gitconfig"
   ansible.builtin.copy:
     dest: "~/.gitconfig"
     mode: "0644"

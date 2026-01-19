@@ -1,21 +1,21 @@
 ---
-- name: "utils/opencode: Add Homebrew opencode tap"
+- name: "opencode: Tap opencode"
   community.general.homebrew_tap:
     name: anomalyco/tap
     state: present
 
-- name: "utils/opencode: Install opencode"
+- name: "opencode: Install package"
   community.general.homebrew:
     name: opencode
     state: present
 
-- name: "utils/opencode: Create config directory"
+- name: "opencode: Create config directory"
   ansible.builtin.file:
     path: "~/.local/share/opencode"
     state: directory
     mode: "0755"
 
-- name: "utils/opencode: Add API key"
+- name: "opencode: Add API key"
   ansible.builtin.copy:
     dest: "~/.local/share/opencode/auth.json"
     mode: "0644"

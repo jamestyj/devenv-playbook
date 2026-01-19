@@ -1,15 +1,6 @@
 ---
-- name: "Utils: Configure Homebrew"
-  ansible.builtin.include_tasks: homebrew.yml
-
-- name: "Utils: Configure tmux"
-  ansible.builtin.include_tasks: tmux.yml
-
-- name: "Utils: Configure git"
-  ansible.builtin.include_tasks: git.yml
-
-- name: "Utils: Configure neovim"
-  ansible.builtin.include_tasks: neovim.yml
-
-- name: "Utils: Configure opencode"
-  ansible.builtin.include_tasks: opencode.yml
+- ansible.builtin.include_tasks: homebrew.yml
+- ansible.builtin.include_tasks: tmux.yml
+- ansible.builtin.include_tasks: git.yml
+- ansible.builtin.include_tasks: neovim.yml
+- ansible.builtin.include_tasks: opencode.yml

@@ -1,5 +1,5 @@
 ---
-- name: "utils/homebrew: Install dependencies"
+- name: "homebrew: Install dependencies"
   ansible.builtin.package:
     name:
       - build-essential
@@ -11,7 +11,7 @@
     state: present
   become: true
 
-- name: "utils/homebrew: Create prefix directory"
+- name: "homebrew: Create prefix directory"
   ansible.builtin.file:
     path: "{{ homebrew_prefix }}"
     state: directory
@@ -20,7 +20,7 @@
     mode: "0755"
   become: true
 
-- name: "utils/homebrew: Install Homebrew"
+- name: "homebrew: Install package"
   ansible.builtin.shell: |
     set -o pipefail
     curl -fsSL https://github.com/Homebrew/brew/tarball/main | tar xz --strip 1 -C {{ homebrew_prefix }}
@@ -35,19 +35,19 @@
     name: zsh
     tasks_from: mkdir_zshrc_d_prefix.yml
 
-- name: "utils/homebrew: Create zsh config"
+- name: "homebrew: Create zsh.d config"
   ansible.builtin.copy:
     dest: "{{ zshrc_d_prefix }}/homebrew.zsh"
     mode: "0644"
     content: |
       eval "$({{ homebrew_prefix }}/bin/brew shellenv)"
 
-- name: "utils/homebrew: Add taps"
+- name: "homebrew: Tap oven-sh/bun"
   community.general.homebrew_tap:
     name: oven-sh/bun
     state: present
 
-- name: "utils/homebrew: Install packages"
+- name: "homebrew: Install packages"
   community.general.homebrew:
     name:
       # System utils
@@ -66,5 +66,28 @@
       - npm
       - pnpm
       # devtools - Python
+      - uv
+    state: present
+
+- name: "homebrew: Install system utils"
+  community.general.homebrew:
+    name:
+      - btop
+      - htop
+      - ripgrep
+      - fd
+      - bat
+      - glow
+      - gdu # gdu-go
+      - neofetch
+    state: present
+
+- name: "homebrew: Install devtools"
+  community.general.homebrew:
+    name:
+      - prettier
+      - oven-sh/bun/bun
+      - npm
+      - pnpm
       - uv
     state: present
