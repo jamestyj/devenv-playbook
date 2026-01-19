@@ -50,7 +50,7 @@ wsl -d Ubuntu
 Copy existing SSH keys from Windows host for Github private repository access:
 
 ```Bash
-cp /mnt/c/Users/<your-username>/.ssh/id_ed25519* ~/.ssh/
+mkdir -p ~/.ssh/ && cp /mnt/c/Users/<your-username>/.ssh/id_ed25519* ~/.ssh/
 chmod 600 ~/.ssh/id_ed25519
 chmod 644 ~/.ssh/id_ed25519.pub
 ```
