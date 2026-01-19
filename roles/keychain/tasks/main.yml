@@ -1,4 +1,10 @@
 ---
+# Removes the need to keep re-entering SSH passphrase when working with Git in
+# VS Code and its derivatives.
+#
+# Works by installing keychain (which manages SSH agents and their environment
+# variables) and configuring it for VS Code.
+
 - name: "Keychain: Install keychain"
   ansible.builtin.package:
     name: keychain

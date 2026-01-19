@@ -1,0 +1,24 @@
+---
+- name: "Homebrew: eza create config directory"
+  ansible.builtin.file:
+    path: ~/.config/eza
+    state: directory
+    mode: '0755'
+
+- name: "Homebrew: eza download theme"
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/eza-community/eza-themes/refs/heads/main/themes/catppuccin-mocha.yml
+    dest: ~/.config/eza/theme.yml
+    mode: '0644'
+
+- name: "Homebrew: Add path for zsh-eza"
+  ansible.builtin.copy:
+    dest: "~/.zprofile"
+    content: |
+      add_path() {
+        if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+          PATH="$PATH:$1"
+        fi
+      }
+      add_path {{ homebrew_prefix }}/bin
+    mode: "0644"
