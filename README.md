@@ -76,10 +76,21 @@ To install the hook, run:
 
 - [ ] Copy `.gitconfig`
 - [ ] Install `opencode`
-- [ ] Install tmux config / catppuccin
 - [ ] Detailed Neovim configuration (LSP, plugins)
   - [Dotfyle - Trending Colorschemes](https://dotfyle.com/neovim/colorscheme/trending)
   - [jdhao/nvim-config](https://github.com/jdhao/nvim-config)
   - NVchad
   - vim config
 - [ ] Support MacOS
+
+
+Roles:
+ - base system (locale, homebrew)
+    - zsh
+    - tmux
+    - utils (fd, fzf, ripgrep, sd, bat, btop, htop, eza, gdu, glow)
+ - dev-tools
+    - Base: Neovim
+    - VS Code / Antigravity: Keychain
+    - TypeScript webdev
+    - Python dev
