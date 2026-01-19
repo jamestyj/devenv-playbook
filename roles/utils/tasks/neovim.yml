@@ -33,7 +33,7 @@
   ansible.builtin.lineinfile:
     path: ~/.config/nvim/lua/chadrc.lua
     regexp: 'theme = "'
-    line: "theme = 'catppuccin'"
+    line: "theme = 'ayu_dark'"
     state: present
 
 - ansible.builtin.include_role:
