@@ -47,28 +47,6 @@
     name: oven-sh/bun
     state: present
 
-- name: "homebrew: Install packages"
-  community.general.homebrew:
-    name:
-      # System utils
-      - btop
-      - htop
-      - ripgrep
-      - fd
-      - bat
-      - glow
-      - gdu # gdu-go
-      - neofetch
-      # devtools - General
-      - prettier
-      # devtools - Javascript/Typescript
-      - oven-sh/bun/bun
-      - npm
-      - pnpm
-      # devtools - Python
-      - uv
-    state: present
-
 - name: "homebrew: Install system utils"
   community.general.homebrew:
     name:
