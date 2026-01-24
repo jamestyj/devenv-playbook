@@ -57,7 +57,7 @@
       - bat
       - glow
       - gdu # gdu-go
-      - neofetch
+      - fastfetch
     state: present
 
 - name: "homebrew: Install devtools"

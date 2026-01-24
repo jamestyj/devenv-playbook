@@ -18,7 +18,7 @@ development environment on Windows Subsystem for Linux (WSL).
   - **Navigation & Search:** `ripgrep` (rg), `fd` (modern find), `fzf` (fuzzy
     finder)
   - **System Monitoring:** `btop` (modern htop), `htop`, `gdu` (disk usage),
-    `neofetch`
+    `fastfetch`
   - **File Management:** `eza` (modern ls), `bat` (modern cat)
   - **Utilities:** `glow` (markdown renderer)
 - **AI Tools:**
