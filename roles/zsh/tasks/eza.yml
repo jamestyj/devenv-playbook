@@ -32,3 +32,10 @@
       }
       add_path {{ homebrew_prefix }}/bin
     mode: "0644"
+
+- name: "eza: Create zsh.d config"
+  ansible.builtin.copy:
+    dest: "{{ zshrc_d_prefix }}/eza.zsh"
+    mode: "0644"
+    content: |
+      export LS_COLORS=""
