@@ -1,4 +1,9 @@
 ---
+- name: "homebrew: Check if brew is installed"
+  ansible.builtin.stat:
+    path: "{{ homebrew_prefix }}/bin/brew"
+  register: utils_homebrew_bin
+
 - name: "homebrew: Install dependencies"
   ansible.builtin.package:
     name:
@@ -10,6 +15,7 @@
       - tar
     state: present
   become: true
+  when: not utils_homebrew_bin.stat.exists
 
 - name: "homebrew: Create prefix directory"
   ansible.builtin.file:
@@ -19,6 +25,7 @@
     group: "{{ ansible_facts.user_id }}"
     mode: "0755"
   become: true
+  when: not utils_homebrew_bin.stat.exists
 
 - name: "homebrew: Install package"
   ansible.builtin.shell: |
@@ -30,6 +37,7 @@
   args:
     creates: "{{ homebrew_prefix }}/bin/brew"
     executable: /bin/bash
+  when: not utils_homebrew_bin.stat.exists
 
 - ansible.builtin.include_role:
     name: zsh

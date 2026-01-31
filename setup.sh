@@ -6,5 +6,12 @@ if ! command -v ansible &> /dev/null; then
     sudo apt update && sudo apt install ansible -y
   fi
 fi
+
 ansible-galaxy collection install -r requirements.yml
-ansible-playbook local.yml -K
+
+ANSIBLE_OPTIONS=""
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  ANSIBLE_OPTIONS="-K"
+fi
+
+ansible-playbook local.yml $ANSIBLE_OPTIONS
