@@ -1,7 +1,7 @@
 # devenv-playbook [![Lint](https://github.com/jamestyj/devenv-playbook/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/jamestyj/devenv-playbook/actions/workflows/ansible-lint.yml)
 
 A collection of Ansible playbooks to automate the setup of a productive
-development environment on Windows Subsystem for Linux (WSL).
+development environment on Windows Subsystem for Linux (WSL) and macOS.
 
 ## 🚀 Features
 
@@ -61,6 +61,31 @@ cd ~ && git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-p
 ./setup.sh
 ```
 
+## 🛠️ Getting Started (macOS)
+
+### Prerequisites
+
+Install Xcode Command Line Tools and Homebrew:
+
+```bash
+xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### Run script
+
+1. Copy or generate SSH keys for Github private repository access.
+2. Checkout Git repository.
+3. Run setup script. Enter your password when prompted.
+
+Run these commands:
+
+```bash
+ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
+cd ~ && git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-playbook
+./setup.sh
+```
+
 ## 🛠️ Post-Install
 
 ### Neovim + NvChad
@@ -107,7 +132,3 @@ terminal font doesn't support them. To fix this:
 
 3. In VS Code: Go to Settings, search for terminal.integrated.fontFamily, and
    set it to your Nerd Font (e.g., 'FiraCode Nerd Font').
-
-## 📝 TODO
-
-- [ ] Support MacOS
