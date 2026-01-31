@@ -5,4 +5,4 @@
     - utils
     - zsh
     - role: linux
-      when: ansible_system == 'Linux'
+      when: ansible_facts['system'] == 'Linux'
