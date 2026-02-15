@@ -17,3 +17,4 @@
         autoSetupRemote = true
       [core]
         editor = nvim
+        pager = less -F
