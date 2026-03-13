@@ -15,14 +15,10 @@
     state: directory
     mode: "0755"
 
-- name: "opencode: Add API key"
+- name: "opencode: Copy auth.json if provided"
   ansible.builtin.copy:
+    src: "~/.local/share/opencode/auth.json"
     dest: "~/.local/share/opencode/auth.json"
-    mode: "0644"
-    content: |
-      {
-        "opencode": {
-          "type": "api",
-          "key": ""
-        }
-      }
+    mode: "0600"
+    remote_src: true
+  failed_when: false

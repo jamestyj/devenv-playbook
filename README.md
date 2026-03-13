@@ -3,7 +3,7 @@
 A collection of Ansible playbooks to automate the setup of a productive
 development environment on Windows Subsystem for Linux (WSL) and macOS.
 
-## 🚀 Features
+## Features
 
 - **Shell & Prompt:**
   - **Zsh** with Oh-My-Zsh
@@ -22,7 +22,7 @@ development environment on Windows Subsystem for Linux (WSL) and macOS.
   - **File Management:** `eza` (modern ls), `bat` (modern cat)
   - **Utilities:** `glow` (markdown renderer)
 - **AI Tools:**
-  - **opencode** (AI assistant with API key)
+  - **opencode** (AI coding assistant)
 - **Development Stack:**
   - **Editor:** `neovim` (nvim)
   - **JavaScript:** `bun`, `npm`, `pnpm`
@@ -33,7 +33,20 @@ development environment on Windows Subsystem for Linux (WSL) and macOS.
   - Locale configuration (`en_US.UTF-8`)
   - Git configuration (`.gitconfig`)
 
-## 🛠️ Getting Started (WSL)
+## Configuration
+
+Before running the playbook, update `group_vars/all.yml` with your personal
+settings:
+
+```yaml
+git_user_name: "Your Name"
+git_user_email: "your.email@example.com"
+```
+
+For **opencode**, place your `auth.json` at `~/.local/share/opencode/auth.json`
+before running the playbook, or configure it manually after installation.
+
+## Getting Started (WSL)
 
 ### Install Ubuntu
 
@@ -47,9 +60,9 @@ wsl -d Ubuntu
 
 ### Run script
 
-1. Copy existing SSH keys from Windows host for Github private repository access.
+1. Copy existing SSH keys from Windows host.
 2. Checkout Git repository.
-3. Run setup script. Enter your SSH passpharse and root password when prompted.
+3. Run setup script. Enter your SSH passphrase and root password when prompted.
 
 Run these commands:
 ```Bash
@@ -61,7 +74,7 @@ cd ~ && git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-p
 ./setup.sh
 ```
 
-## 🛠️ Getting Started (macOS)
+## Getting Started (macOS)
 
 ### Prerequisites
 
@@ -74,7 +87,7 @@ xcode-select --install
 
 ### Run script
 
-1. Copy or generate SSH keys for Github private repository access.
+1. Copy or generate SSH keys.
 2. Checkout Git repository.
 3. Run setup script. Enter your password when prompted.
 
@@ -86,7 +99,7 @@ cd ~ && git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-p
 ./setup.sh
 ```
 
-## 🛠️ Post-Install
+## Post-Install
 
 ### Neovim + NvChad
 
@@ -99,7 +112,7 @@ cd ~ && git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-p
    - **Web Dev**: astro-language-server, typescript-language-server, css-lsp,
      html-lsp, tailwindcss-language-server, eslint-lsp, jsonlint, markdownlint
 
-## 🛠️ Development
+## Development
 
 ### Git Hooks
 
@@ -118,7 +131,7 @@ sudo apt install pipx python3-venv -y
 pipx install --include-deps ansible-dev-tools
 ```
 
-## 📝 Fonts
+## Fonts
 
 Starship, Catppuccin, and eza use many special glyphs (icons) for Git, Python,
 Rust, etc. If you see broken squares or weird characters, it's because your
@@ -132,3 +145,8 @@ terminal font doesn't support them. To fix this:
 
 3. In VS Code: Go to Settings, search for terminal.integrated.fontFamily, and
    set it to your Nerd Font (e.g., 'FiraCode Nerd Font').
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
+for details.

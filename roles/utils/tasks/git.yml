@@ -5,8 +5,8 @@
     mode: "0644"
     content: |
       [user]
-        email = your.email@example.com
-        name = Your Name
+        email = {{ git_user_email }}
+        name = {{ git_user_name }}
       [alias]
         co = checkout
         br = branch

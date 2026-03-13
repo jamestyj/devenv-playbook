@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-devenv-playbook is an Ansible automation project for setting up a productive development environment on WSL (Windows Subsystem for Linux). It uses Infrastructure as Code to configure shell environments, CLI tools, and development utilities.
+devenv-playbook is an Ansible automation project for setting up a productive development environment on WSL (Windows Subsystem for Linux) and macOS. It uses Infrastructure as Code to configure shell environments, CLI tools, and development utilities.
 
 ## Commands
 
@@ -57,3 +57,22 @@ ansible-lint
 ## Linting
 
 `.ansible-lint` skips: `yaml[indentation]`, `latest[git]`, `name[play]`, `command-instead-of-module`
+
+## Commits
+
+All commits MUST follow [Conventional Commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/).
+
+Format: `<type>[optional scope]: <description>`
+
+Allowed types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
+
+- Use lowercase type and description
+- Do not end the description with a period
+- Use `!` after type/scope for breaking changes (e.g., `feat!: remove deprecated API`)
+- Add optional body/footer separated by blank lines for additional context
+- Do NOT include a `Co-Authored-By` trailer in commit messages
+
+Examples:
+- `feat(client): add backup scheduling support`
+- `fix: handle token expiry during long-running jobs`
+- `docs: update CLAUDE.md with commit conventions`
