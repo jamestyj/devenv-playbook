@@ -71,6 +71,8 @@ Allowed types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `buil
 - Use `!` after type/scope for breaking changes (e.g., `feat!: remove deprecated API`)
 - Add optional body/footer separated by blank lines for additional context
 - Do NOT include a `Co-Authored-By` trailer in commit messages
+- Subject line (first line) must be max 72 characters
+- Body text must be wrapped at 72 characters
 
 Examples:
 - `feat(client): add backup scheduling support`
