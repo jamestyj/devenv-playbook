@@ -62,14 +62,13 @@ ansible-lint
 
 All commits MUST follow [Conventional Commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/).
 
-Format: `<type>[optional scope]: <description>`
-
-Allowed types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
-
+- Format: `<type>[optional scope]: <description>`
+- Allowed types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
 - Use lowercase type and description
 - Do not end the description with a period
 - Use `!` after type/scope for breaking changes (e.g., `feat!: remove deprecated API`)
-- Add optional body/footer separated by blank lines for additional context
+- Use bullet points (not paragraphs) in the commit body for scannability
+- Add optional footer separated by a blank line for additional context
 - Do NOT include a `Co-Authored-By` trailer in commit messages
 - Subject line (first line) must be max 72 characters
 - Body text must be wrapped at 72 characters
