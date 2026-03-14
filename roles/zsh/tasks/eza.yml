@@ -22,16 +22,18 @@
     mode: "0644"
 
 - name: "eza: Add path for zsh-eza"
-  ansible.builtin.copy:
-    dest: "~/.zprofile"
-    content: |
+  ansible.builtin.blockinfile:
+    path: "~/.zprofile"
+    create: true
+    mode: "0644"
+    marker: "# {mark} ANSIBLE MANAGED - eza path"
+    block: |
       add_path() {
         if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
           PATH="$PATH:$1"
         fi
       }
       add_path {{ homebrew_prefix }}/bin
-    mode: "0644"
 
 - name: "eza: Create zsh.d config"
   ansible.builtin.copy:
