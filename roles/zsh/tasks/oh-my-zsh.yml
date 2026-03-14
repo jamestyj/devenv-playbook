@@ -3,13 +3,13 @@
   ansible.builtin.git:
     repo: https://github.com/ohmyzsh/ohmyzsh
     dest: "~/.oh-my-zsh"
-    update: no
+    update: "{{ update_plugins | default(false) | bool }}"
 
 - name: "Oh-My-Zsh: Install plugins"
   ansible.builtin.git:
     repo: "{{ item.repo }}"
     dest: "~/.oh-my-zsh/custom/plugins/{{ item.name }}"
-    update: no
+    update: "{{ update_plugins | default(false) | bool }}"
   loop: "{{ zsh_oh_my_zsh_plugins }}"
 
 - name: "Oh-My-Zsh: Create .zshrc from template"

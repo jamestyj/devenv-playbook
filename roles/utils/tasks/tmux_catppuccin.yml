@@ -9,7 +9,7 @@
   ansible.builtin.git:
     repo: https://github.com/catppuccin/tmux
     dest: "~/.config/tmux/plugins/catppuccin/tmux"
-    update: no
+    update: "{{ update_plugins | default(false) | bool }}"
 
 - name: "tmux/catppuccin: Create tmux-cpu plugin directory"
   ansible.builtin.file:
@@ -21,7 +21,7 @@
   ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tmux-cpu
     dest: "~/.config/tmux/plugins/tmux-plugins/tmux-cpu"
-    update: no
+    update: "{{ update_plugins | default(false) | bool }}"
 
 - name: "tmux/catppuccin: Create config"
   ansible.builtin.copy:
