@@ -3,6 +3,24 @@
 A collection of Ansible playbooks to automate the setup of a productive
 development environment on Windows Subsystem for Linux (WSL) and macOS.
 
+## Why
+
+Setting up a development environment by hand is tedious, error-prone,
+and hard to reproduce across machines or OS reinstalls. This playbook
+captures the entire setup as code so it can be run — and re-run — in a
+single command. It covers both macOS and WSL, giving you a consistent,
+productive experience no matter which platform you're on.
+
+## Use Cases
+
+- Provision a fresh laptop or WSL instance in minutes.
+- Keep multiple machines (e.g., work Mac + home WSL) in sync.
+- Rebuild quickly after an OS reinstall or hardware swap.
+- Share a curated, opinionated tool stack with teammates or the
+  community.
+- Experiment with new tools — add a role, run the playbook, and
+  revert if unwanted.
+
 ## Features
 
 - **Shell & Prompt:**
