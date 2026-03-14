@@ -29,5 +29,7 @@
       done
 
       # WSL: Change to Linux home directory
-      cd ~
+      if [ -n "$WSL_DISTRO_NAME" ]; then
+        cd ~
+      fi
 
