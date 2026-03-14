@@ -22,6 +22,14 @@ if ! command -v ansible &> /dev/null; then
   fi
 fi
 
+# Verify minimum Ansible version
+MIN_ANSIBLE_VERSION="2.15"
+ANSIBLE_VERSION=$(ansible --version | head -1 | grep -oE '[0-9]+\.[0-9]+')
+if [ "$(printf '%s\n' "$MIN_ANSIBLE_VERSION" "$ANSIBLE_VERSION" | sort -V | head -1)" != "$MIN_ANSIBLE_VERSION" ]; then
+  echo "Error: Ansible >= $MIN_ANSIBLE_VERSION required (found $ANSIBLE_VERSION)."
+  exit 1
+fi
+
 echo "Installing Ansible Galaxy collections..."
 ansible-galaxy collection install -r requirements.yml
 
