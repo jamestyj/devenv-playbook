@@ -6,35 +6,56 @@ development environment on Windows Subsystem for Linux (WSL) and macOS.
 ## Features
 
 - **Shell & Prompt:**
-  - **Zsh** with Oh-My-Zsh
-  - Zsh productivity plugins: `zsh-autosuggestions`, `zsh-syntax-highlighting`,
-    `fzf-tab`, `zsh-eza`
-  - **Starship** prompt (Catppuccin theme)
+  - [**Zsh**](https://www.zsh.org/) with [Oh-My-Zsh](https://ohmyz.sh/)
+  - Zsh productivity plugins:
+    [`zsh-autosuggestions`](https://github.com/zsh-users/zsh-autosuggestions),
+    [`zsh-syntax-highlighting`](https://github.com/zsh-users/zsh-syntax-highlighting),
+    [`fzf-tab`](https://github.com/Aloxaf/fzf-tab),
+    [`zsh-eza`](https://github.com/z-shell/zsh-eza)
+  - [**Starship**](https://starship.rs/) prompt
+    ([Catppuccin](https://catppuccin.com/) theme)
 - **Terminal Multiplexer:**
-  - **tmux** with Catppuccin theme and automatic session management
+  - [**tmux**](https://github.com/tmux/tmux) with Catppuccin theme and
+    automatic session management
 - **Package Manager:**
-  - **Homebrew** (consistent package management across macOS and Linux)
+  - [**Homebrew**](https://brew.sh/) (consistent package management across
+    macOS and Linux)
 - **CLI Tools:**
-  - **Navigation & Search:** `ripgrep` (rg), `fd` (modern find), `fzf` (fuzzy
-    finder)
-  - **System Monitoring:** `btop` (modern htop), `htop`, `gdu` (disk usage),
-    `fastfetch`
-  - **File Management:** `eza` (modern ls), `bat` (modern cat)
-  - **Utilities:** `glow` (markdown renderer)
+  - **Navigation & Search:**
+    [`ripgrep`](https://github.com/BurntSushi/ripgrep) (rg),
+    [`fd`](https://github.com/sharkdp/fd) (modern find),
+    [`fzf`](https://github.com/junegunn/fzf) (fuzzy finder)
+  - **System Monitoring:**
+    [`btop`](https://github.com/aristocratos/btop) (modern htop),
+    [`htop`](https://htop.dev/),
+    [`gdu`](https://github.com/dundee/gdu) (disk usage),
+    [`fastfetch`](https://github.com/fastfetch-cli/fastfetch)
+  - **File Management:**
+    [`eza`](https://github.com/eza-community/eza) (modern ls),
+    [`bat`](https://github.com/sharkdp/bat) (modern cat)
+  - **Utilities:**
+    [`glow`](https://github.com/charmbracelet/glow) (markdown renderer)
 - **AI Tools:**
-  - **Claude Code** (Anthropic's CLI for Claude, with custom statusline showing
-    git status, API usage, and context window)
-  - **Claude Usage Tracker** (Claude API usage monitoring app, macOS only)
-  - **opencode** (AI coding assistant)
-  - **cmux** (Ghostty-based terminal with AI agent notifications, macOS only)
+  - [**Claude Code**](https://github.com/anthropics/claude-code) (Anthropic's
+    CLI for Claude, with custom statusline showing git status, API usage, and
+    context window)
+  - [**Claude Usage Tracker**](https://github.com/hamed-elfayome/claude-usage)
+    (Claude API usage monitoring app, macOS only)
+  - [**opencode**](https://github.com/opencode-ai/opencode) (AI coding
+    assistant)
+  - [**cmux**](https://github.com/manaflow-ai/cmux) (Ghostty-based terminal
+    with AI agent notifications, macOS only)
 - **Development Stack:**
-  - **Editor:** `neovim` (nvim)
-  - **JavaScript:** `bun`, `npm`, `pnpm`
-  - **Python:** `uv`
-  - **Formatters:** `prettier`
+  - **Editor:** [`neovim`](https://neovim.io/) (nvim)
+  - **JavaScript:** [`bun`](https://bun.sh/),
+    [`npm`](https://www.npmjs.com/), [`pnpm`](https://pnpm.io/)
+  - **Python:** [`uv`](https://github.com/astral-sh/uv)
+  - **Formatters:** [`prettier`](https://prettier.io/)
 - **Windows (from WSL):**
-  - **oh-my-posh** for PowerShell (Catppuccin Mocha theme)
-  - **Meslo Nerd Font** auto-installed for Windows Terminal
+  - [**oh-my-posh**](https://ohmyposh.dev/) for PowerShell (Catppuccin Mocha
+    theme)
+  - [**Meslo Nerd Font**](https://github.com/ryanoasis/nerd-fonts)
+    auto-installed for Windows Terminal
 - **System Configuration:**
   - SSH Keychain management (SSH agent)
   - Locale configuration (`en_US.UTF-8`)
@@ -121,10 +142,11 @@ After running the playbook on WSL, set your Windows Terminal font to
 **MesloLGM Nerd Font** in Settings > Profiles > Defaults > Appearance > Font
 face. This is required for oh-my-posh glyphs to render correctly in PowerShell.
 
-### Neovim + NvChad
+### Neovim + [NvChad](https://nvchad.com/)
 
-1. Run :MasonInstallAll and :TSInstallAll command after lazy.nvim finishes
-   downloading plugins.
+1. Run :MasonInstallAll and :TSInstallAll command after
+   [lazy.nvim](https://github.com/folke/lazy.nvim) finishes downloading
+   plugins.
 2. Suggested plugins to install:
    - **Misc**: tree-sitter-cli, glow, jq, prettier
    - **DevOps**: ansible-lint, ansible-language-server, bash-language-server,
