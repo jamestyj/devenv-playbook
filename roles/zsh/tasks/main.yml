@@ -14,10 +14,26 @@
   become: true
   when: ansible_facts['system'] == 'Linux'
 
-- ansible.builtin.include_tasks: oh-my-zsh.yml
-- ansible.builtin.include_tasks: fzf.yml
-- ansible.builtin.include_tasks: eza.yml
-- ansible.builtin.include_tasks: starship.yml
+- ansible.builtin.include_tasks:
+    file: oh-my-zsh.yml
+    apply:
+      tags: oh-my-zsh
+  tags: oh-my-zsh
+- ansible.builtin.include_tasks:
+    file: fzf.yml
+    apply:
+      tags: fzf
+  tags: fzf
+- ansible.builtin.include_tasks:
+    file: eza.yml
+    apply:
+      tags: eza
+  tags: eza
+- ansible.builtin.include_tasks:
+    file: starship.yml
+    apply:
+      tags: starship
+  tags: starship
 
 - name: "Add {{ zshrc_d_prefix }}/*.zsh loader to ~/.zshrc"
   ansible.builtin.blockinfile:

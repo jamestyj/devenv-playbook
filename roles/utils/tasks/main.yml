@@ -1,9 +1,41 @@
 ---
-- ansible.builtin.include_tasks: homebrew.yml
-- ansible.builtin.include_tasks: tmux.yml
-- ansible.builtin.include_tasks: git.yml
-- ansible.builtin.include_tasks: neovim.yml
-- ansible.builtin.include_tasks: opencode.yml
-- ansible.builtin.include_tasks: claude-code.yml
-- ansible.builtin.include_tasks: claude-usage-tracker.yml
-- ansible.builtin.include_tasks: cmux.yml
+- ansible.builtin.include_tasks:
+    file: homebrew.yml
+    apply:
+      tags: homebrew
+  tags: homebrew
+- ansible.builtin.include_tasks:
+    file: tmux.yml
+    apply:
+      tags: tmux
+  tags: tmux
+- ansible.builtin.include_tasks:
+    file: git.yml
+    apply:
+      tags: git
+  tags: git
+- ansible.builtin.include_tasks:
+    file: neovim.yml
+    apply:
+      tags: neovim
+  tags: neovim
+- ansible.builtin.include_tasks:
+    file: opencode.yml
+    apply:
+      tags: opencode
+  tags: opencode
+- ansible.builtin.include_tasks:
+    file: claude-code.yml
+    apply:
+      tags: claude-code
+  tags: claude-code
+- ansible.builtin.include_tasks:
+    file: claude-usage-tracker.yml
+    apply:
+      tags: claude-usage-tracker
+  tags: claude-usage-tracker
+- ansible.builtin.include_tasks:
+    file: cmux.yml
+    apply:
+      tags: cmux
+  tags: cmux

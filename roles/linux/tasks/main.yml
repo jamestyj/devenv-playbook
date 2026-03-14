@@ -1,3 +1,11 @@
 ---
-- ansible.builtin.include_tasks: locale.yml
-- ansible.builtin.include_tasks: keychain.yml
+- ansible.builtin.include_tasks:
+    file: locale.yml
+    apply:
+      tags: locale
+  tags: locale
+- ansible.builtin.include_tasks:
+    file: keychain.yml
+    apply:
+      tags: keychain
+  tags: keychain
