@@ -21,7 +21,7 @@
   ansible.builtin.copy:
     dest: "~/.vscode-server/server-env-setup"
     content: |
-      eval $(keychain --eval --agents ssh id_ed25519)
+      eval $(keychain --eval --agents ssh {{ ssh_key_name }})
     mode: "0644"
 
 - ansible.builtin.include_role:
@@ -33,4 +33,4 @@
     dest: "{{ zshrc_d_prefix }}/keychain.zsh"
     mode: "0644"
     content: |
-      eval $(keychain --eval --agents ssh id_ed25519)
+      eval $(keychain --eval --agents ssh {{ ssh_key_name }})

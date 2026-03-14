@@ -3,6 +3,9 @@ homebrew_prefix: "{{ (ansible_facts['os_family'] == 'Darwin') | ternary('/opt/ho
 zshrc_d_prefix: "~/.zshrc.d"
 is_wsl: "{{ lookup('ansible.builtin.env', 'WSL_DISTRO_NAME') | length > 0 }}"
 
+# SSH key name for keychain configuration
+ssh_key_name: "id_ed25519"
+
 # Git configuration - update these with your own details
 git_user_name: "Your Name"
 git_user_email: "your.email@example.com"
