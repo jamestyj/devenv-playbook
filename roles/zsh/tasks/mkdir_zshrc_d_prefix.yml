@@ -1,5 +1,5 @@
 ---
-- name: "Create {{ zshrc_d_prefix }} config directory"
+- name: "zsh: Create {{ zshrc_d_prefix }} config directory"
   ansible.builtin.file:
     path: "{{ zshrc_d_prefix }}"
     state: directory

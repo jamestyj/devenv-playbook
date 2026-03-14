@@ -1,5 +1,5 @@
 ---
-- name: "Install package"
+- name: "zsh: Install package"
   ansible.builtin.package:
     name:
       - zsh
@@ -7,7 +7,7 @@
   become: true
   when: ansible_facts['system'] == 'Linux'
 
-- name: "Set zsh as default shell"
+- name: "zsh: Set zsh as default shell"
   ansible.builtin.user:
     name: "{{ ansible_facts.user_id }}"
     shell: /bin/zsh
@@ -35,7 +35,7 @@
       tags: starship
   tags: starship
 
-- name: "Add {{ zshrc_d_prefix }}/*.zsh loader to ~/.zshrc"
+- name: "zsh: Add {{ zshrc_d_prefix }}/*.zsh loader to ~/.zshrc"
   ansible.builtin.blockinfile:
     path: "~/.zshrc"
     block: |
