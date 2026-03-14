@@ -24,7 +24,7 @@
 - name: "locale: Set to en_US.UTF-8 (RedHat)"
   ansible.builtin.command: localectl set-locale LANG=en_US.UTF-8
   become: true
-  changed_when: true
+  changed_when: "'LANG=en_US.UTF-8' not in linux_locale_localectl_status.stdout"
   when:
     - ansible_facts.os_family == "RedHat"
     - "'LANG=en_US.UTF-8' not in linux_locale_localectl_status.stdout"
