@@ -154,11 +154,22 @@ cd ~ && git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-p
 
 ## Post-Install
 
-### Windows Terminal (WSL)
+### Fonts
 
-After running the playbook on WSL, set your Windows Terminal font to
-**MesloLGM Nerd Font** in Settings > Profiles > Defaults > Appearance > Font
-face. This is required for oh-my-posh glyphs to render correctly in PowerShell.
+Starship, Catppuccin, eza, and oh-my-posh use many special glyphs (icons)
+for Git, Python, Rust, etc. If you see broken squares or weird characters,
+your terminal font doesn't support them. To fix this:
+
+1. Download a font from [Nerd Fonts](https://www.nerdfonts.com/) (e.g.,
+   FiraCode Nerd Font or JetBrainsMono Nerd Font).
+2. Install the font, then set it in your terminal:
+   - **Windows Terminal (WSL):** Settings > Profiles > Defaults >
+     Appearance > Font face (e.g., **MesloLGM Nerd Font**, which is
+     auto-installed by the playbook on WSL).
+   - **VS Code:** Settings > search `terminal.integrated.fontFamily` >
+     set to your Nerd Font (e.g., `FiraCode Nerd Font`).
+   - **Other terminals:** Look for "Font" or "Font face" in your
+     terminal's settings.
 
 ### Neovim + [NvChad](https://nvchad.com/)
 
@@ -176,18 +187,3 @@ face. This is required for oh-my-posh glyphs to render correctly in PowerShell.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and contribution
 guidelines.
-
-## Fonts
-
-Starship, Catppuccin, and eza use many special glyphs (icons) for Git, Python,
-Rust, etc. If you see broken squares or weird characters, it's because your
-terminal font doesn't support them. To fix this:
-
-1. Download a font from [Nerd Fonts](https://www.nerdfonts.com/) (e.g., FiraCode
-   Nerd Font or JetBrainsMono Nerd Font).
-
-2. Install the font, then open your Terminal Settings and set the "Font face" to
-   the Nerd Font version.
-
-3. In VS Code: Go to Settings, search for terminal.integrated.fontFamily, and
-   set it to your Nerd Font (e.g., 'FiraCode Nerd Font').
