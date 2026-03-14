@@ -20,7 +20,7 @@
   ansible.builtin.git:
     repo: https://github.com/NvChad/starter
     dest: "~/.config/nvim"
-    update: no
+    update: false
   when: not utils_nvchad_installed.stat.exists
 
 # https://nvchad.com/docs/quickstart/install

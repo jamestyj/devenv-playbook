@@ -16,8 +16,8 @@
   ansible.builtin.copy:
     src: "~/.oh-my-zsh/templates/zshrc.zsh-template"
     dest: "~/.zshrc"
-    remote_src: yes
-    force: no
+    remote_src: true
+    force: false
     mode: "0644"
 
 - name: "Oh-My-Zsh: Update plugins config"
