@@ -1,0 +1,63 @@
+---
+- name: "claude-code: Install package"
+  community.general.npm:
+    name: "@anthropic-ai/claude-code"
+    global: true
+    state: present
+
+- name: "claude-code: Create config directory"
+  ansible.builtin.file:
+    path: "~/.claude"
+    state: directory
+    mode: "0755"
+
+- name: "claude-code: Create API key directory"
+  ansible.builtin.file:
+    path: "~/.config/claude-code"
+    state: directory
+    mode: "0700"
+
+- ansible.builtin.include_role:
+    name: zsh
+    tasks_from: mkdir_zshrc_d_prefix.yml
+
+- name: "claude-code: Create zsh.d config"
+  ansible.builtin.copy:
+    dest: "{{ zshrc_d_prefix }}/claude-code.zsh"
+    mode: "0644"
+    content: |
+      # Claude Code: source API key from file if it exists
+      if [ -f ~/.config/claude-code/api-key ]; then
+        export ANTHROPIC_API_KEY="$(cat ~/.config/claude-code/api-key)"
+      fi
+
+- name: "claude-code: Copy statusline command script"
+  ansible.builtin.copy:
+    src: statusline-command.sh
+    dest: "~/.claude/statusline-command.sh"
+    mode: "0755"
+
+- name: "claude-code: Copy statusline config"
+  ansible.builtin.copy:
+    src: statusline-config.txt
+    dest: "~/.claude/statusline-config.txt"
+    mode: "0644"
+
+- name: "claude-code: Merge statusLine into settings.json"
+  # Read existing settings.json (or empty object), merge statusLine block,
+  # write back without disturbing other keys
+  ansible.builtin.shell: |
+    set -eo pipefail
+    SETTINGS_FILE="$HOME/.claude/settings.json"
+    if [ -f "$SETTINGS_FILE" ]; then
+      current=$(cat "$SETTINGS_FILE")
+    else
+      current='{}'
+    fi
+    echo "$current" | {{ homebrew_prefix }}/bin/jq \
+      '. + {"statusLine": {"type": "command", "command": "bash ~/.claude/statusline-command.sh"}}' \
+      > "${SETTINGS_FILE}.tmp"
+    mv "${SETTINGS_FILE}.tmp" "$SETTINGS_FILE"
+  args:
+    executable: /bin/bash
+  changed_when: true

@@ -71,6 +71,7 @@
 - name: "homebrew: Install devtools"
   community.general.homebrew:
     name:
+      - jq
       - prettier
       - oven-sh/bun/bun
       - npm
