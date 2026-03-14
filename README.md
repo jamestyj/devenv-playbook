@@ -71,15 +71,12 @@ wsl -d Ubuntu
 
 ### Run script
 
-1. Copy existing SSH keys from Windows host.
-2. Checkout Git repository.
-3. Run setup script. Enter your SSH passphrase and root password when prompted.
+1. Checkout Git repository.
+2. Run setup script. Enter your SSH passphrase and root password when prompted.
 
 Run these commands:
+
 ```Bash
-mkdir -p ~/.ssh/ && cp /mnt/c/Users/<your-username>/.ssh/id_ed25519* ~/.ssh/
-chmod 600 ~/.ssh/id_ed25519
-chmod 644 ~/.ssh/id_ed25519.pub
 ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
 cd ~ && git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-playbook
 ./setup.sh
@@ -98,9 +95,8 @@ xcode-select --install
 
 ### Run script
 
-1. Copy or generate SSH keys.
-2. Checkout Git repository.
-3. Run setup script. Enter your password when prompted.
+1. Checkout Git repository.
+2. Run setup script. Enter your password when prompted.
 
 Run these commands:
 
