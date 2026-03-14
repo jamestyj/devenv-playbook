@@ -26,7 +26,7 @@ echo "Installing Ansible Galaxy collections..."
 ansible-galaxy collection install -r requirements.yml
 
 ANSIBLE_OPTIONS=""
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+if [[ "$OSTYPE" == "linux-gnu"* ]] || [[ "$OSTYPE" == "darwin"* ]]; then
   ANSIBLE_OPTIONS="-K"
 fi
 
