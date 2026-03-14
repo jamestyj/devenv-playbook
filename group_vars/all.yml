@@ -1,6 +1,9 @@
 ---
+# Homebrew install path: /opt/homebrew on macOS, Linuxbrew path on Linux
 homebrew_prefix: "{{ (ansible_facts.os_family == 'Darwin') | ternary('/opt/homebrew', '/home/linuxbrew/.linuxbrew') }}"
+# Directory for sourced Zsh config snippets (loaded by .zshrc)
 zshrc_d_prefix: "~/.zshrc.d"
+# Detect WSL environment via WSL_DISTRO_NAME env var
 is_wsl: "{{ lookup('ansible.builtin.env', 'WSL_DISTRO_NAME') | length > 0 }}"
 
 # SSH key name for keychain configuration
