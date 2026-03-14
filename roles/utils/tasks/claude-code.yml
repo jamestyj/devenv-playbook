@@ -44,20 +44,26 @@
     mode: "0644"
 
 - name: "claude-code: Merge statusLine into settings.json"
-  # Read existing settings.json (or empty object), merge statusLine block,
-  # write back without disturbing other keys
   ansible.builtin.shell: |
     set -eo pipefail
     SETTINGS_FILE="$HOME/.claude/settings.json"
+    EXPECTED_CMD="bash ~/.claude/statusline-command.sh"
     if [ -f "$SETTINGS_FILE" ]; then
       current=$(cat "$SETTINGS_FILE")
     else
       current='{}'
     fi
-    echo "$current" | {{ homebrew_prefix }}/bin/jq \
-      '. + {"statusLine": {"type": "command", "command": "bash ~/.claude/statusline-command.sh"}}' \
-      > "${SETTINGS_FILE}.tmp"
-    mv "${SETTINGS_FILE}.tmp" "$SETTINGS_FILE"
+    existing_cmd=$(echo "$current" | {{ homebrew_prefix }}/bin/jq -r '.statusLine.command // ""')
+    if [ "$existing_cmd" = "$EXPECTED_CMD" ]; then
+      echo "OK"
+    else
+      echo "$current" | {{ homebrew_prefix }}/bin/jq \
+        '. + {"statusLine": {"type": "command", "command": "'"$EXPECTED_CMD"'"}}' \
+        > "${SETTINGS_FILE}.tmp"
+      mv "${SETTINGS_FILE}.tmp" "$SETTINGS_FILE"
+      echo "CHANGED"
+    fi
   args:
     executable: /bin/bash
-  changed_when: true
+  register: utils_claude_settings_result
+  changed_when: "'CHANGED' in utils_claude_settings_result.stdout"
