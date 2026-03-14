@@ -17,10 +17,6 @@
     state: directory
     mode: "0700"
 
-- ansible.builtin.include_role:
-    name: zsh
-    tasks_from: mkdir_zshrc_d_prefix.yml
-
 - name: "claude-code: Create zsh.d config"
   ansible.builtin.copy:
     dest: "{{ zshrc_d_prefix }}/claude-code.zsh"

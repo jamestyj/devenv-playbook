@@ -1,6 +1,13 @@
 ---
 - hosts: localhost
   connection: local
+  pre_tasks:
+    - name: "Create {{ zshrc_d_prefix }} config directory"
+      ansible.builtin.file:
+        path: "{{ zshrc_d_prefix }}"
+        state: directory
+        mode: "0755"
+      tags: always
   roles:
     - utils
     - zsh

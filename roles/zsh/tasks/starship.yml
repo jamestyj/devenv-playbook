@@ -11,10 +11,6 @@
   args:
     creates: "~/.config/starship.toml"
 
-- ansible.builtin.include_role:
-    name: zsh
-    tasks_from: mkdir_zshrc_d_prefix.yml
-
 - name: "Starship: Add zsh.d config"
   ansible.builtin.copy:
     dest: "{{ zshrc_d_prefix }}/starship.zsh"

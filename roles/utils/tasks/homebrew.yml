@@ -59,10 +59,6 @@
     executable: /bin/bash
   when: not utils_homebrew_bin.stat.exists
 
-- ansible.builtin.include_role:
-    name: zsh
-    tasks_from: mkdir_zshrc_d_prefix.yml
-
 - name: "homebrew: Create zsh.d config"
   ansible.builtin.copy:
     dest: "{{ zshrc_d_prefix }}/homebrew.zsh"

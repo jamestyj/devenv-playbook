@@ -14,10 +14,6 @@
   args:
     creates: ~/.fzf.zsh
 
-- ansible.builtin.include_role:
-    name: zsh
-    tasks_from: mkdir_zshrc_d_prefix.yml
-
 - name: "fzf: Create zsh.d config"
   ansible.builtin.copy:
     dest: "{{ zshrc_d_prefix }}/fzf.zsh"

@@ -24,10 +24,6 @@
       eval $(keychain --eval --agents ssh {{ ssh_key_name }})
     mode: "0644"
 
-- ansible.builtin.include_role:
-    name: zsh
-    tasks_from: mkdir_zshrc_d_prefix.yml
-
 - name: "keychain: Create zsh.d config"
   ansible.builtin.copy:
     dest: "{{ zshrc_d_prefix }}/keychain.zsh"
