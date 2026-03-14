@@ -191,8 +191,3 @@ terminal font doesn't support them. To fix this:
 
 3. In VS Code: Go to Settings, search for terminal.integrated.fontFamily, and
    set it to your Nerd Font (e.g., 'FiraCode Nerd Font').
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
-for details.
