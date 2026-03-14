@@ -32,7 +32,7 @@
 - name: "neovim: Set NvChad theme"
   ansible.builtin.lineinfile:
     path: ~/.config/nvim/lua/chadrc.lua
-    regexp: 'theme = "'
+    regexp: 'theme = '
     line: "theme = 'ayu_dark'"
     state: present
 
