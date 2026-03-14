@@ -1,0 +1,6 @@
+---
+# NvChad color theme
+utils_nvchad_theme: "ayu_dark"
+
+# Override to true to re-apply .gitconfig after changing git vars
+utils_force_git_config: false

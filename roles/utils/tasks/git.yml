@@ -2,7 +2,7 @@
 - name: "git: Add .gitconfig"
   ansible.builtin.copy:
     dest: "~/.gitconfig"
-    force: "{{ force_git_config | default(false) }}"
+    force: "{{ utils_force_git_config }}"
     mode: "0644"
     content: |
       [user]

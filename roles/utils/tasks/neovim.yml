@@ -33,7 +33,7 @@
   ansible.builtin.lineinfile:
     path: ~/.config/nvim/lua/chadrc.lua
     regexp: 'theme = '
-    line: "theme = 'ayu_dark'"
+    line: "theme = '{{ utils_nvchad_theme }}'"
     state: present
 
 - name: "neovim: Create zsh.d config"

@@ -1,0 +1,3 @@
+---
+# Set to true to pull latest Oh-My-Zsh and plugin updates
+zsh_update_plugins: false
