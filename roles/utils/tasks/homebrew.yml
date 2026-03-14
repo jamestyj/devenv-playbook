@@ -88,4 +88,5 @@
       - npm
       - pnpm
       - uv
+      - gh
     state: present
