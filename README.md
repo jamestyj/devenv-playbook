@@ -22,6 +22,9 @@ development environment on Windows Subsystem for Linux (WSL) and macOS.
   - **File Management:** `eza` (modern ls), `bat` (modern cat)
   - **Utilities:** `glow` (markdown renderer)
 - **AI Tools:**
+  - **Claude Code** (Anthropic's CLI for Claude, with custom statusline showing
+    git status, API usage, and context window)
+  - **Claude Usage Tracker** (Claude API usage monitoring app, macOS only)
   - **opencode** (AI coding assistant)
   - **cmux** (Ghostty-based terminal with AI agent notifications, macOS only)
 - **Development Stack:**
@@ -43,6 +46,10 @@ settings:
 git_user_name: "Your Name"
 git_user_email: "your.email@example.com"
 ```
+
+For **Claude Code**, place your Anthropic API key in
+`~/.config/claude-code/api-key` before running the playbook, or set
+`ANTHROPIC_API_KEY` manually after installation.
 
 For **opencode**, place your `auth.json` at `~/.local/share/opencode/auth.json`
 before running the playbook, or configure it manually after installation.
