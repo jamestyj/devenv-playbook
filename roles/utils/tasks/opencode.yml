@@ -15,10 +15,8 @@
     state: directory
     mode: "0755"
 
-- name: "opencode: Copy auth.json if provided"
-  ansible.builtin.copy:
-    src: "~/.local/share/opencode/auth.json"
-    dest: "~/.local/share/opencode/auth.json"
+- name: "opencode: Set permissions on auth.json if it exists"
+  ansible.builtin.file:
+    path: "~/.local/share/opencode/auth.json"
     mode: "0600"
-    remote_src: true
   failed_when: false
