@@ -38,6 +38,7 @@
 - name: "zsh: Add {{ zshrc_d_prefix }}/*.zsh loader to ~/.zshrc"
   ansible.builtin.blockinfile:
     path: "~/.zshrc"
+    marker: "# {mark} ANSIBLE MANAGED - zshrc.d loader"
     block: |
       # Load {{ zshrc_d_prefix }}/*.zsh
       for ZSH_FILE in {{ zshrc_d_prefix }}/*.zsh(N); do
