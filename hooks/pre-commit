@@ -1,6 +1,7 @@
 #!/bin/sh
 
-PATH=/home/linuxbrew/.linuxbrew/bin/:$PATH
+# Ensure Homebrew tools are on PATH (Linux + macOS)
+PATH="/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 # Colors
 RED=$(printf '\033[0;31m')
@@ -16,27 +17,27 @@ print_header() {
 
 check_step() {
   step=$1
-  command=$2
+  shift
 
-  print_header "$step" "Running '$command'...${NC}"
+  print_header "$step" "Running '$*'...${NC}"
   step_start=$(date +%s)
 
-  eval "$command"
+  "$@"
   status=$?
 
   step_duration=$(( $(date +%s) - step_start ))
 
   if [ $status -ne 0 ]; then
-    echo "${RED}✘ '$command' failed after ${step_duration}s${NC}"
+    echo "${RED}✘ '$*' failed after ${step_duration}s${NC}"
     exit 1
   else
-    echo "${GREEN}✔ '$command' passed in ${step_duration}s${NC}"
+    echo "${GREEN}✔ '$*' passed in ${step_duration}s${NC}"
   fi
   echo ""
 }
 
-check_step "1/2" "ansible-playbook --syntax-check local.yml"
-check_step "2/2" "ansible-lint"
+check_step "1/2" ansible-playbook --syntax-check local.yml
+check_step "2/2" ansible-lint
 
 total_duration=$(( $(date +%s) - start_total ))
 echo "${GREEN}All checks passed in ${total_duration}s! 🚀${NC}"

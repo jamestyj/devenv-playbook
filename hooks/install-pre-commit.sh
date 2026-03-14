@@ -2,13 +2,12 @@
 
 # Setup Git hooks for local development
 
-HOOKS_DIR=".git/hooks"
-REPO_HOOKS_DIR="../../hooks" # Relative path from .git/hooks
+if ! command -v ansible-lint >/dev/null 2>&1; then
+  echo "Installing ansible-lint..."
+  brew install ansible-lint
+fi
 
-echo "Installing dependencies..."
-brew install ansible-lint
+echo "Configuring Git hooks directory..."
+git config core.hooksPath hooks
 
-echo "Installing Git hooks..."
-ln -sf "$REPO_HOOKS_DIR/pre-commit" "$HOOKS_DIR/pre-commit"
-
-echo "Git hook installed successfully (symlinked)!"
+echo "Git hooks configured successfully!"

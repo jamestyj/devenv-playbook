@@ -130,7 +130,7 @@ face. This is required for oh-my-posh glyphs to render correctly in PowerShell.
 ### Git Hooks
 
 A Git pre-commit hook is used to run syntax checks and `ansible-lint` before
-every commit. To install (symlink) the hook, run:
+every commit. To set up the hook, run:
 
 ```bash
 ./hooks/install-pre-commit.sh
