@@ -5,3 +5,4 @@
 - ansible.builtin.include_tasks: neovim.yml
 - ansible.builtin.include_tasks: opencode.yml
 - ansible.builtin.include_tasks: claude-code.yml
+- ansible.builtin.include_tasks: claude-usage-tracker.yml
