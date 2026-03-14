@@ -77,3 +77,10 @@ Examples:
 - `feat(client): add backup scheduling support`
 - `fix: handle token expiry during long-running jobs`
 - `docs: update CLAUDE.md with commit conventions`
+
+## README
+
+When making changes that affect user-facing features, tools, or configuration:
+- Update the relevant sections in `README.md` to reflect the changes
+- Keep the Features list in sync with what the playbook actually installs
+- Wrap lines at 80 characters to match the existing README style
