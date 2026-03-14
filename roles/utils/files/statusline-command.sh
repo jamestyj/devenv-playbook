@@ -123,7 +123,7 @@ if [ "$show_branch" = "1" ]; then
 fi
 
 usage_text=""
-if [ "$show_usage" = "1" ]; then
+if [ "$show_usage" = "1" ] && [ "$(uname)" = "Darwin" ]; then
   if swift_result=$(swift "$HOME/.claude/fetch-claude-usage.swift" 2>/dev/null) && [ -n "$swift_result" ]; then
     utilization=$(echo "$swift_result" | cut -d'|' -f1)
     resets_at=$(echo "$swift_result" | cut -d'|' -f2)
