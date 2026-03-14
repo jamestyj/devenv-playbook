@@ -12,6 +12,6 @@
     - utils
     - zsh
     - role: linux
-      when: ansible_facts['system'] == 'Linux'
+      when: ansible_facts.system == 'Linux'
     - role: windows
-      when: ansible_facts['system'] == 'Linux' and is_wsl
+      when: ansible_facts.system == 'Linux' and is_wsl

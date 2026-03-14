@@ -5,14 +5,14 @@
       - zsh
     state: present
   become: true
-  when: ansible_facts['system'] == 'Linux'
+  when: ansible_facts.system == 'Linux'
 
 - name: "zsh: Set zsh as default shell"
   ansible.builtin.user:
     name: "{{ ansible_facts.user_id }}"
     shell: /bin/zsh
   become: true
-  when: ansible_facts['system'] == 'Linux'
+  when: ansible_facts.system == 'Linux'
 
 - ansible.builtin.include_tasks:
     file: oh-my-zsh.yml

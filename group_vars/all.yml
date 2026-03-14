@@ -1,5 +1,5 @@
 ---
-homebrew_prefix: "{{ (ansible_facts['os_family'] == 'Darwin') | ternary('/opt/homebrew', '/home/linuxbrew/.linuxbrew') }}"
+homebrew_prefix: "{{ (ansible_facts.os_family == 'Darwin') | ternary('/opt/homebrew', '/home/linuxbrew/.linuxbrew') }}"
 zshrc_d_prefix: "~/.zshrc.d"
 is_wsl: "{{ lookup('ansible.builtin.env', 'WSL_DISTRO_NAME') | length > 0 }}"
 
