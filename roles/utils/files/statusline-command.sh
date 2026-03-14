@@ -1,13 +1,21 @@
 #!/bin/bash
 config_file="$HOME/.claude/statusline-config.txt"
 if [ -f "$config_file" ]; then
+  # shellcheck source=/dev/null
   source "$config_file"
+  # shellcheck disable=SC2153
   show_dir=$SHOW_DIRECTORY
+  # shellcheck disable=SC2153
   show_branch=$SHOW_BRANCH
+  # shellcheck disable=SC2153
   show_usage=$SHOW_USAGE
+  # shellcheck disable=SC2153
   show_bar=$SHOW_PROGRESS_BAR
+  # shellcheck disable=SC2153
   show_reset=$SHOW_RESET_TIME
+  # shellcheck disable=SC2153
   show_context=$SHOW_CONTEXT
+  # shellcheck disable=SC2153
   show_git_status=${SHOW_GIT_STATUS:-1}
 else
   show_dir=1
@@ -75,7 +83,7 @@ if [ "$show_branch" = "1" ]; then
       git_ahead=""
       git_behind=""
       if [ -z "$git_state" ]; then
-        lr=$(git rev-list --count --left-right @{upstream}...HEAD 2>/dev/null)
+        lr=$(git rev-list --count --left-right '@{upstream}...HEAD' 2>/dev/null)
         if [ -n "$lr" ]; then
           behind=$(echo "$lr" | cut -f1)
           ahead=$(echo "$lr" | cut -f2)
@@ -116,9 +124,7 @@ fi
 
 usage_text=""
 if [ "$show_usage" = "1" ]; then
-  swift_result=$(swift "$HOME/.claude/fetch-claude-usage.swift" 2>/dev/null)
-
-  if [ $? -eq 0 ] && [ -n "$swift_result" ]; then
+  if swift_result=$(swift "$HOME/.claude/fetch-claude-usage.swift" 2>/dev/null) && [ -n "$swift_result" ]; then
     utilization=$(echo "$swift_result" | cut -d'|' -f1)
     resets_at=$(echo "$swift_result" | cut -d'|' -f2)
 
@@ -175,7 +181,7 @@ if [ "$show_usage" = "1" ]; then
 
       reset_time_display=""
       if [ "$show_reset" = "1" ] && [ -n "$resets_at" ] && [ "$resets_at" != "null" ]; then
-        iso_time=$(echo "$resets_at" | sed 's/\.[0-9]*Z$//')
+        iso_time="${resets_at%.*}"
         epoch=$(date -ju -f "%Y-%m-%dT%H:%M:%S" "$iso_time" "+%s" 2>/dev/null)
 
         if [ -n "$epoch" ]; then
@@ -268,7 +274,7 @@ if [ "$show_context" = "1" ]; then
     ctx_sizes=""
     if [ -n "$context_total" ] && [ "$context_total" -gt 0 ] 2>/dev/null; then
       context_used=$(( context_total * context_pct / 100 ))
-      ctx_sizes=" ($(format_tokens $context_used)/$(format_tokens $context_total))"
+      ctx_sizes=" ($(format_tokens "$context_used")/$(format_tokens "$context_total"))"
     fi
 
     context_text="${ctx_color}Context: ${context_pct}%${ctx_bar}${ctx_sizes}${RESET}"

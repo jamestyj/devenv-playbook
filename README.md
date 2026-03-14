@@ -1,4 +1,4 @@
-# devenv-playbook [![Lint](https://github.com/jamestyj/devenv-playbook/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/jamestyj/devenv-playbook/actions/workflows/ansible-lint.yml)
+# devenv-playbook [![Lint](https://github.com/jamestyj/devenv-playbook/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/jamestyj/devenv-playbook/actions/workflows/ansible-lint.yml) [![ShellCheck](https://github.com/jamestyj/devenv-playbook/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/jamestyj/devenv-playbook/actions/workflows/shellcheck.yml)
 
 A collection of Ansible playbooks to automate the setup of a productive
 development environment on Windows Subsystem for Linux (WSL) and macOS.
@@ -158,8 +158,8 @@ face. This is required for oh-my-posh glyphs to render correctly in PowerShell.
 
 ### Git Hooks
 
-A Git pre-commit hook is used to run syntax checks and `ansible-lint` before
-every commit. To set up the hook, run:
+A Git pre-commit hook is used to run syntax checks, `ansible-lint`, and
+`shellcheck` before every commit. To set up the hook, run:
 
 ```bash
 ./hooks/install-pre-commit.sh

@@ -36,8 +36,10 @@ check_step() {
   echo ""
 }
 
-check_step "1/2" ansible-playbook --syntax-check local.yml
-check_step "2/2" ansible-lint
+check_step "1/3" ansible-playbook --syntax-check local.yml
+check_step "2/3" ansible-lint
+check_step "3/3" shellcheck setup.sh hooks/pre-commit \
+  hooks/install-pre-commit.sh roles/utils/files/statusline-command.sh
 
 total_duration=$(( $(date +%s) - start_total ))
 echo "${GREEN}All checks passed in ${total_duration}s! 🚀${NC}"
