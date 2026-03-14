@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ansible-lint)",
+      "Bash(ansible-lint *)",
+      "Bash(ansible-playbook --syntax-check *)",
+      "Bash(ansible-playbook --check *)"
+    ]
+  }
+}
