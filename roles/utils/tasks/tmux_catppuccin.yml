@@ -27,6 +27,7 @@
   ansible.builtin.copy:
     dest: "~/.tmux.conf"
     mode: "0644"
+    backup: true
     content: |
 
       # Options to make tmux more pleasant
