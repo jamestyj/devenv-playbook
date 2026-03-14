@@ -1,5 +1,5 @@
 ---
-- name: "locale: Set to en_US.UTF-8"
+- name: "locale: Set to en_US.UTF-8 (Debian)"
   ansible.builtin.shell: |
     locale-gen en_US.UTF-8
     update-locale LANG=en_US.UTF-8
@@ -7,3 +7,24 @@
   args:
     creates: "/etc/locale.conf"
   when: ansible_facts.os_family == "Debian"
+
+- name: "locale: Install glibc-langpack-en (RedHat)"
+  ansible.builtin.package:
+    name: glibc-langpack-en
+    state: present
+  become: true
+  when: ansible_facts.os_family == "RedHat"
+
+- name: "locale: Check current locale (RedHat)"
+  ansible.builtin.command: localectl status
+  register: linux_locale_localectl_status
+  changed_when: false
+  when: ansible_facts.os_family == "RedHat"
+
+- name: "locale: Set to en_US.UTF-8 (RedHat)"
+  ansible.builtin.command: localectl set-locale LANG=en_US.UTF-8
+  become: true
+  changed_when: true
+  when:
+    - ansible_facts.os_family == "RedHat"
+    - "'LANG=en_US.UTF-8' not in linux_locale_localectl_status.stdout"

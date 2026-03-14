@@ -59,20 +59,27 @@ before running the playbook, or configure it manually after installation.
 
 ## Getting Started (WSL)
 
-### Install Ubuntu
+### Install a WSL distribution
 
-Install the default Ubuntu distribution by running the following commands in
+Install a WSL distribution by running the following command in
 Windows Terminal:
 
+| Distro | Command                    |
+| ------ | -------------------------- |
+| Ubuntu | `wsl --install`            |
+| Fedora | `wsl --install -d Fedora`  |
+
+Then launch it:
+
 ```Powershell
-wsl --install
-wsl -d Ubuntu
+wsl -d <distro>
 ```
 
 ### Run script
 
 1. Checkout Git repository.
-2. Run setup script. Enter your SSH passphrase and root password when prompted.
+2. Run setup script. Enter your SSH passphrase and root password when
+   prompted.
 
 Run these commands:
 
@@ -138,9 +145,18 @@ every commit. To set up the hook, run:
 
 ### Ansible-lint dependencies for VS Code and derivatives (WSL)
 
+**Ubuntu:**
+
 ```Bash
 sudo apt update
 sudo apt install pipx python3-venv -y
+pipx install --include-deps ansible-dev-tools
+```
+
+**Fedora:**
+
+```Bash
+sudo dnf install pipx python3-virtualenv -y
 pipx install --include-deps ansible-dev-tools
 ```
 

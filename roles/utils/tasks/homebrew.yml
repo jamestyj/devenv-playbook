@@ -4,7 +4,7 @@
     path: "{{ homebrew_prefix }}/bin/brew"
   register: utils_homebrew_bin
 
-- name: "homebrew: Install dependencies"
+- name: "homebrew: Install dependencies (Debian)"
   ansible.builtin.package:
     name:
       - build-essential
@@ -15,7 +15,27 @@
       - tar
     state: present
   become: true
-  when: not utils_homebrew_bin.stat.exists
+  when:
+    - not utils_homebrew_bin.stat.exists
+    - ansible_facts.os_family == "Debian"
+
+- name: "homebrew: Install dependencies (RedHat)"
+  ansible.builtin.package:
+    name:
+      - gcc
+      - gcc-c++
+      - make
+      - patch
+      - procps-ng
+      - curl
+      - file
+      - git
+      - tar
+    state: present
+  become: true
+  when:
+    - not utils_homebrew_bin.stat.exists
+    - ansible_facts.os_family == "RedHat"
 
 - name: "homebrew: Create prefix directory"
   ansible.builtin.file:

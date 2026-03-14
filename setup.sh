@@ -10,9 +10,15 @@ if ! command -v ansible &> /dev/null; then
   if command -v brew &> /dev/null; then
     echo "Installing Ansible via Homebrew..."
     brew install ansible
-  else
+  elif command -v dnf &> /dev/null; then
+    echo "Installing Ansible via dnf..."
+    sudo dnf install ansible -y
+  elif command -v apt &> /dev/null; then
     echo "Installing Ansible via apt..."
     sudo apt update && sudo apt install ansible -y
+  else
+    echo "Error: No supported package manager found (brew, dnf, apt)."
+    exit 1
   fi
 fi
 
