@@ -172,33 +172,10 @@ face. This is required for oh-my-posh glyphs to render correctly in PowerShell.
    - **Web Dev**: astro-language-server, typescript-language-server, css-lsp,
      html-lsp, tailwindcss-language-server, eslint-lsp, jsonlint, markdownlint
 
-## Development
+## Contributing
 
-### Git Hooks
-
-A Git pre-commit hook is used to run syntax checks, `ansible-lint`, and
-`shellcheck` before every commit. To set up the hook, run:
-
-```bash
-./hooks/install-pre-commit.sh
-```
-
-### Ansible-lint dependencies for VS Code and derivatives (WSL)
-
-**Ubuntu:**
-
-```Bash
-sudo apt update
-sudo apt install pipx python3-venv -y
-pipx install --include-deps ansible-dev-tools
-```
-
-**Fedora:**
-
-```Bash
-sudo dnf install pipx python3-virtualenv -y
-pipx install --include-deps ansible-dev-tools
-```
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and contribution
+guidelines.
 
 ## Fonts
 

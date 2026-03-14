@@ -49,6 +49,25 @@ Install the pre-commit hook to run `ansible-lint` automatically:
 ./hooks/install-pre-commit.sh
 ```
 
+## Development Environment
+
+### Ansible-lint dependencies for VS Code and derivatives (WSL)
+
+**Ubuntu:**
+
+```Bash
+sudo apt update
+sudo apt install pipx python3-venv -y
+pipx install --include-deps ansible-dev-tools
+```
+
+**Fedora:**
+
+```Bash
+sudo dnf install pipx python3-virtualenv -y
+pipx install --include-deps ansible-dev-tools
+```
+
 ## Pull Request Guidelines
 
 - Follow [Conventional Commits](https://www.conventionalcommits.org/)
