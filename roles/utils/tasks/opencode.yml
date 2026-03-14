@@ -15,8 +15,13 @@
     state: directory
     mode: "0755"
 
-- name: "opencode: Set permissions on auth.json if it exists"
+- name: "opencode: Check if auth.json exists"
+  ansible.builtin.stat:
+    path: "~/.local/share/opencode/auth.json"
+  register: utils_opencode_auth
+
+- name: "opencode: Set permissions on auth.json"
   ansible.builtin.file:
     path: "~/.local/share/opencode/auth.json"
     mode: "0600"
-  failed_when: false
+  when: utils_opencode_auth.stat.exists
