@@ -4,12 +4,6 @@
     name: neovim
     state: present
 
-- name: "neovim: Create config directory"
-  ansible.builtin.file:
-    path: "~/.config/nvim"
-    state: directory
-    mode: "0755"
-
 # This check is needed because .git/ is deleted post install.
 - name: "neovim: Check if NvChad already installed"
   ansible.builtin.stat:

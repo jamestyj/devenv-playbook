@@ -71,7 +71,7 @@
     name: oven-sh/bun
     state: present
 
-- name: "homebrew: Install system utils"
+- name: "homebrew: Install packages"
   community.general.homebrew:
     name:
       - btop
@@ -82,11 +82,6 @@
       - glow
       - gdu # gdu-go
       - fastfetch
-    state: present
-
-- name: "homebrew: Install devtools"
-  community.general.homebrew:
-    name:
       - jq
       - prettier
       - oven-sh/bun/bun
