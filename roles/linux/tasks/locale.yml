@@ -5,7 +5,7 @@
     update-locale LANG=en_US.UTF-8
   become: true
   args:
-    creates: "/etc/locale.conf"
+    creates: "/etc/default/locale"
   when: ansible_facts.os_family == "Debian"
 
 - name: "locale: Install glibc-langpack-en (RedHat)"
