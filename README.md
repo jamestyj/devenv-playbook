@@ -32,6 +32,9 @@ development environment on Windows Subsystem for Linux (WSL) and macOS.
   - **JavaScript:** `bun`, `npm`, `pnpm`
   - **Python:** `uv`
   - **Formatters:** `prettier`
+- **Windows (from WSL):**
+  - **oh-my-posh** for PowerShell (Catppuccin Mocha theme)
+  - **Meslo Nerd Font** auto-installed for Windows Terminal
 - **System Configuration:**
   - SSH Keychain management (SSH agent)
   - Locale configuration (`en_US.UTF-8`)
@@ -108,6 +111,12 @@ cd ~ && git clone https://github.com/jamestyj/devenv-playbook.git && cd devenv-p
 ```
 
 ## Post-Install
+
+### Windows Terminal (WSL)
+
+After running the playbook on WSL, set your Windows Terminal font to
+**MesloLGM Nerd Font** in Settings > Profiles > Defaults > Appearance > Font
+face. This is required for oh-my-posh glyphs to render correctly in PowerShell.
 
 ### Neovim + NvChad
 

@@ -1,0 +1,27 @@
+---
+- name: "windows: Install oh-my-posh via winget"
+  ansible.builtin.command:
+    cmd: winget.exe install --id JanDeDobbeleer.OhMyPosh --accept-source-agreements --accept-package-agreements
+    creates: "/mnt/c/Users/{{ windows_username }}/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe"
+
+# NOTE: After installation, manually set your Windows Terminal font to
+# "MesloLGM Nerd Font" in Settings > Profiles > Defaults > Appearance > Font face
+- name: "windows: Install Meslo Nerd Font"
+  ansible.builtin.command:
+    cmd: /mnt/c/Users/{{ windows_username }}/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe font install Meslo
+    creates: "/mnt/c/Users/{{ windows_username }}/AppData/Local/Microsoft/Windows/Fonts/MesloLGMNerdFont-Regular.ttf"
+
+- name: "windows: Create PowerShell profile directory"
+  ansible.builtin.file:
+    path: "/mnt/c/Users/{{ windows_username }}/Documents/PowerShell"
+    state: directory
+    mode: "0755"
+
+- name: "windows: Configure oh-my-posh in PowerShell profile"
+  ansible.builtin.blockinfile:
+    path: "/mnt/c/Users/{{ windows_username }}/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
+    create: true
+    mode: "0644"
+    marker: "# {mark} ANSIBLE MANAGED - oh-my-posh"
+    block: |
+      oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\catppuccin_mocha.omp.json" | Invoke-Expression

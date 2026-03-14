@@ -1,6 +1,7 @@
 ---
 homebrew_prefix: "{{ (ansible_facts['os_family'] == 'Darwin') | ternary('/opt/homebrew', '/home/linuxbrew/.linuxbrew') }}"
 zshrc_d_prefix: "~/.zshrc.d"
+is_wsl: "{{ lookup('ansible.builtin.env', 'WSL_DISTRO_NAME') | length > 0 }}"
 
 # Git configuration - update these with your own details
 git_user_name: "Your Name"

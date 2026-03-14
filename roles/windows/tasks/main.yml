@@ -1,0 +1,12 @@
+---
+- name: "windows: Detect Windows username"
+  ansible.builtin.command:
+    cmd: cmd.exe /C "echo %USERNAME%"
+  register: windows_username_result
+  changed_when: false
+
+- name: "windows: Set Windows username fact"
+  ansible.builtin.set_fact:
+    windows_username: "{{ windows_username_result.stdout | trim }}"
+
+- ansible.builtin.include_tasks: oh-my-posh.yml

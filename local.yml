@@ -6,3 +6,5 @@
     - zsh
     - role: linux
       when: ansible_facts['system'] == 'Linux'
+    - role: windows
+      when: ansible_facts['system'] == 'Linux' and is_wsl
