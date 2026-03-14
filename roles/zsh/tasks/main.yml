@@ -15,8 +15,8 @@
   when: ansible_facts['system'] == 'Linux'
 
 - ansible.builtin.include_tasks: oh-my-zsh.yml
-- ansible.builtin.import_tasks: fzf.yml
-- ansible.builtin.import_tasks: eza.yml
+- ansible.builtin.include_tasks: fzf.yml
+- ansible.builtin.include_tasks: eza.yml
 - ansible.builtin.include_tasks: starship.yml
 
 - name: "Add {{ zshrc_d_prefix }}/*.zsh loader to ~/.zshrc"
