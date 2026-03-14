@@ -1,0 +1,12 @@
+---
+- name: "cmux: Tap manaflow-ai/cmux"
+  community.general.homebrew_tap:
+    name: manaflow-ai/cmux
+    state: present
+  when: ansible_facts['os_family'] == 'Darwin'
+
+- name: "cmux: Install cmux"
+  community.general.homebrew_cask:
+    name: cmux
+    state: present
+  when: ansible_facts['os_family'] == 'Darwin'

@@ -23,6 +23,7 @@ development environment on Windows Subsystem for Linux (WSL) and macOS.
   - **Utilities:** `glow` (markdown renderer)
 - **AI Tools:**
   - **opencode** (AI coding assistant)
+  - **cmux** (Ghostty-based terminal with AI agent notifications, macOS only)
 - **Development Stack:**
   - **Editor:** `neovim` (nvim)
   - **JavaScript:** `bun`, `npm`, `pnpm`
