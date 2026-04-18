@@ -11,6 +11,15 @@
   args:
     creates: "~/.config/starship.toml"
 
+- name: "Starship: Enable line_break so prompt character is on a new line"
+  community.general.ini_file:
+    path: "~/.config/starship.toml"
+    section: line_break
+    option: disabled
+    value: "false"
+    no_extra_spaces: false
+    mode: "0644"
+
 - name: "Starship: Add zsh.d config"
   ansible.builtin.copy:
     dest: "{{ zshrc_d_prefix }}/starship.zsh"
