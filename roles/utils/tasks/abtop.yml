@@ -1,0 +1,13 @@
+---
+- name: "abtop: Install package"
+  community.general.cargo:
+    name: abtop
+    state: present
+    executable: "{{ homebrew_prefix }}/bin/cargo"
+
+- name: "abtop: Create zsh.d config for cargo bin PATH"
+  ansible.builtin.copy:
+    dest: "{{ zshrc_d_prefix }}/cargo.zsh"
+    mode: "0644"
+    content: |
+      export PATH="$HOME/.cargo/bin:$PATH"

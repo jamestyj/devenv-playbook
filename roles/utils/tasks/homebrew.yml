@@ -84,6 +84,7 @@
       - fastfetch
       - jq
       - prettier
+      - rust
       - oven-sh/bun/bun
       - npm
       - pnpm

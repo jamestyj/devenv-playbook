@@ -45,6 +45,7 @@ productive experience no matter which platform you're on.
     [`fzf`](https://github.com/junegunn/fzf) (fuzzy finder)
   - **System Monitoring:**
     [`btop`](https://github.com/aristocratos/btop) (modern htop),
+    `abtop` (Rust-based, installed via cargo),
     [`htop`](https://htop.dev/),
     [`gdu`](https://github.com/dundee/gdu) (disk usage),
     [`fastfetch`](https://github.com/fastfetch-cli/fastfetch)

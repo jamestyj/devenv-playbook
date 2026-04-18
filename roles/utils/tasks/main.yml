@@ -5,6 +5,11 @@
       tags: homebrew
   tags: homebrew
 - ansible.builtin.include_tasks:
+    file: abtop.yml
+    apply:
+      tags: abtop
+  tags: abtop
+- ansible.builtin.include_tasks:
     file: tmux.yml
     apply:
       tags: tmux
