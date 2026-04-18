@@ -27,6 +27,8 @@
         export ANTHROPIC_API_KEY="$(cat ~/.config/claude-code/api-key)"
       fi
 
+      alias cc=claude
+
 - name: "claude-code: Copy statusline command script"
   ansible.builtin.copy:
     src: statusline-command.sh
